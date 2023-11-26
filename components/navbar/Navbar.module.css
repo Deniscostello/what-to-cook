@@ -1,0 +1,17 @@
+.HomepageHeader {
+    background-color: #547258;
+    height: 1.5em;
+    display: flex;
+    justify-content: space-around;
+    font-size: 40px;
+    align-items: center;
+    color: white;
+  }
+  .RecipeDiv {
+    text-align: center;
+    border: 1px solid white;
+    background-color: transparent;
+    height: 1em;
+    border-radius:50%;
+    width: 1em;
+    }
