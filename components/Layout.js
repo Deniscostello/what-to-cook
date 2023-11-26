@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './Layout.module.css'
 import Navbar from './navbar/Navbar';
 import { Fragment } from 'react';
+import Footer from './Footer';
 
 function Layout() {
   return (
@@ -18,7 +19,9 @@ function Layout() {
           <div>Light Bites</div>
           </div>
         </div>
-
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   )
