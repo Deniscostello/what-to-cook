@@ -1,4 +1,13 @@
 .mainDiv {
     background-color: #253928;
     height: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+.layout{
+    border: 1px solid red;
+    height: 60px;
+    width: 400px;
+    
 }
