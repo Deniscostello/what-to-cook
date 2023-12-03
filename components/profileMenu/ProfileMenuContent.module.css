@@ -1,7 +1,7 @@
 .background {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     z-index: 50;
     background-color: rgba(182, 176, 169, 0.5);
     width: 100%;
@@ -11,7 +11,7 @@
 .mainContent {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     z-index: 100;
     width: 75%;
     max-width: 300px;
@@ -30,33 +30,54 @@
     padding: 10px;
     font-size: 20px;
 }
-.hamHead {
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    color: black;
-    height: 10%;
-    width: 100%;
-    border: 3px solid grey;
+
+.profileHead {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  color: black;
+  height: 10%;
+  width: 100%;
+  border: 3px solid grey;
 }
 
 .buttonDiv {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  height: 10%;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 10%;
+  height: 100%;
+}
+
+.titleDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 100%;
+
 }
 
 .buttonDiv button {
   background-color: transparent;
   align-items: center;
   height: 30%;
-  width: 10%;
+  width: 80%;
 } 
 
-.hamContent{
-  height: 90%;
+.profileContent {
+  height: 80%;
 }
+.logoutDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 3px solid grey;
+  color: black;
+  height: 10%;
+
+}
+
 
 
 

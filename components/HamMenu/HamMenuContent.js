@@ -26,12 +26,18 @@ export default function HamMenuContent(props) {
         }
     }
 
-    let contentJsx =  <div className={classes.menuItem} onClick={() => clicked(item.webAddress)} ><p>Hello</p> </div>
+    let contentJsx = <div className={classes.menuItem} onClick={() => clicked(item.webAddress)} ><p>Hello</p> </div>
 
     return (
         <div className={classes.background} onClick={() => closeMe()} >
             <div className={classes.mainContent} >
-            {contentJsx}
+                    <div className={classes.buttonDiv}>
+                        <button onClick={() => closeMe()}> X</button>
+                    </div>
+                <div className={classes.hamContent}>
+                    {contentJsx}
+                </div>
+
             </div>
         </div>
     );
