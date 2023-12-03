@@ -9,25 +9,25 @@ import { createContext, useState, useEffect } from 'react'
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, meetings: [], dataLoaded: false })
+    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, meetings: [], dataLoaded: false })
 
-    useEffect(() => {
-        getAllMeetings()
-    }, []);
+    // useEffect(() => {
+    //     getAllMeetings()
+    // }, []);
 
-    async function getAllMeetings() {
-        const response = await fetch('/api/get-meetings', {
-            method: 'POST',
-            body: JSON.stringify({ meetups: 'all' }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        let data = await response.json();
-        console.log(data);
-        setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.meetings = data.meetings; newGlobals.dataLoaded = true; console.log(newGlobals); return newGlobals })
+    // async function getAllMeetings() {
+    //     const response = await fetch('/api/get-meetings', {
+    //         method: 'POST',
+    //         body: JSON.stringify({ meetups: 'all' }),
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     });
+    //     let data = await response.json();
+    //     console.log(data);
+    //     setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.meetings = data.meetings; newGlobals.dataLoaded = true; console.log(newGlobals); return newGlobals })
         
-    }
+    // }
 
     async function editGlobalData(command) { // {cmd: someCommand, newVal: 'new text'}
         if (command.cmd == 'hideHamMenu') { // {cmd: 'hideHamMenu', newVal: false} 
@@ -37,6 +37,12 @@ export function GlobalContextProvider(props) {
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
                 newGlobals.hideHamMenu = command.newVal; return newGlobals
+            })
+        }
+        if (command.cmd == 'hideProfileMenu') { 
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.hideProfileMenu = command.newVal; return newGlobals
             })
         }
         if (command.cmd == 'addMeeting') {
