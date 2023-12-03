@@ -12,14 +12,23 @@ function Layout() {
       </div>
 
       <div className={classes.mainDiv}>
-        <div className={classes.layout}>Hello World
-          <div className={classes.carouselDiv}>Easy and convenient meals based on food you already have</div>
-          <div className={classes.recipeDiv}>
-          <div >Dinner Ideas</div>
-          <div>Light Bites</div>
+        <div className={classes.carouselDiv}>
+          Easy and convenient meals based on food you already have
+          <div className={classes.imageDiv}>
+              Image goes here
+          </div>
+        </div>
+        <div className={classes.recipeDiv}>
+          <div className={classes.dinnerDiv} >
+            Dinner Ideas
+          </div>
+          <div className={classes.lightBites}>
+            Light Bites
           </div>
         </div>
       </div>
+
+
       <div>
         <Footer />
       </div>
