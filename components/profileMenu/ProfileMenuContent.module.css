@@ -1,4 +1,5 @@
 .background {
+    color: white;
     position: fixed;
     top: 0;
     right: 0;
@@ -24,8 +25,7 @@
   .mainContent::-webkit-scrollbar {
     display: none;
   }
-
-.menuItem {
+  .menuItem {
     color: black;
     padding: 10px;
     font-size: 20px;
@@ -35,7 +35,6 @@
   display: flex;
   flex-direction: row;
   justify-content:center;
-  color: black;
   height: 10%;
   width: 100%;
   border: 3px solid grey;
@@ -55,7 +54,7 @@
   justify-content: center;
   width: 90%;
   height: 100%;
-
+  padding: 20px 5px 20px 35px;
 }
 
 .buttonDiv button {
@@ -66,16 +65,29 @@
 } 
 
 .profileContent {
+  display: flex;
+  flex-direction: row;
   height: 80%;
+}
+
+
+.profileImageDiv {
+  padding: 10px 5px 10px 5px;
+  font-size: 30px;
+}
+
+.profileContentDiv {
+  padding: 10px 5px 10px 5px;
+  font-size: 30px;
+
 }
 .logoutDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
   border: 3px solid grey;
-  color: black;
   height: 10%;
-
+  padding: 20px 5px 10px 5px;
 }
 
 
