@@ -1,12 +1,35 @@
 .mainDiv {
-    background-color: #253928;
-  height: 1040px;
-    display: flex;
-    justify-content: center ;
-    align-items: center;
+  background-color: #5D8B63;
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
-.layout{
-    border: 1px solid red;
-    height: 60px;
-    width: 400px;    
+
+.listOne {
+  height: 25%;
+  width: 100%;
+  margin: 5px;
+  border: 2px solid red;
+}
+
+.listTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  margin: 5px;
+  border: 2px solid red;
+}
+
+.listThree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  margin: 5px;
+  border: 2px solid red;
 }
