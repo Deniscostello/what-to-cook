@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from './navbar/Navbar';
-import Footer from './Footer';
+import Navbar from '../navbar/Navbar';
+import Footer from '../Footer';
 import classes from './ShowFood.module.css';
 import Head from 'next/head';
 
@@ -17,8 +17,15 @@ function ShowFood() {
     </div>
 
     <div className={classes.mainDiv}>
-      <div>
-          <h1>Show Recipes in DB</h1>
+      <div className={classes.listOne}>
+        <div className={classes.items}></div>
+      </div>
+
+      <div className={classes.listTwo}>
+
+      </div>
+      <div className={classes.listThree}>
+        
       </div>
     </div>
     <div>

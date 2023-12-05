@@ -2,6 +2,7 @@ import classes from './ProfileMenuContent.module.css'
 import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import GlobalContext from '@/pages/store/globalContext'
+import { CgProfile } from 'react-icons/cg';
 
 export default function ProfileMenuContent(props) {
     const globalCtx = useContext(GlobalContext)
@@ -26,7 +27,7 @@ export default function ProfileMenuContent(props) {
         }
     }
 
-    let contentJsx = <div className={classes.menuItem} onClick={() => clicked(item.webAddress)} >Hello </div>
+    //  let contentJsx = <div className={classes.menuItem} onClick={() => clicked(item.webAddress)} >Hello </div>
 
     return (
         <div className={classes.background} onClick={() => closeMe()} >
@@ -41,7 +42,15 @@ export default function ProfileMenuContent(props) {
                     
                 </div>
                 <div className={classes.profileContent}>
-                    {contentJsx}
+                     {/* {contentJsx}  */}
+                    <div className={classes.profileImageDiv}>
+                        <CgProfile />
+                        <p>Edit Profile</p>
+                    </div>
+                    <div className={classes.profileContentDiv}>
+                        <p>UserName </p>
+                    </div>
+                    
                 </div>
                 <div className={classes.logoutDiv}>
                     Log Out
