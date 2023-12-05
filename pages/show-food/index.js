@@ -1,4 +1,4 @@
-import ShowFood from "@/components/ShowFood";
+import ShowFood from "@/components/show-food/ShowFood";
 
 function ShowFoodPage() {
     return <ShowFood />
