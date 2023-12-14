@@ -18,7 +18,14 @@ export function GlobalContextProvider(props) {
             }
         });
         let data = await response.json();
-        setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.meetings = data.meetings; newGlobals.dataLoaded = true; console.log(newGlobals); return newGlobals })
+        console.log(data)
+        setGlobals((previousGlobals) => { 
+            const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
+            newGlobals.foods = data.foods; 
+            newGlobals.dataLoaded = true; 
+            console.log(newGlobals); 
+            return newGlobals 
+        })
         
     }
 

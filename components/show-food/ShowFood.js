@@ -12,9 +12,9 @@ function ShowFood() {
         <meta name="description" content="Recipes Created From Food Inputted" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-    <div>
+    {/* <div>
       <Navbar />
-    </div>
+    </div> */}
 
     <div className={classes.mainDiv}>
       <div className={classes.listOne}>
@@ -28,9 +28,9 @@ function ShowFood() {
         
       </div>
     </div>
-    <div>
+    {/* <div>
       <Footer />
-    </div>
+    </div> */}
   </>
   )
 }

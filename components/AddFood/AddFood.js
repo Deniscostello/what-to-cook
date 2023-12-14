@@ -12,18 +12,18 @@ function AddFood() {
         <meta name="description" content="Add Food to database" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div>
+      {/* <div>
         <Navbar />
-      </div>
+      </div> */}
 
       <div className={classes.mainDiv}>
         <div>
             <h1>Add Image</h1>
         </div>
       </div>
-      <div>
+      {/* <div>
         <Footer />
-      </div>
+      </div> */}
     </>
 
   )

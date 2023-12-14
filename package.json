@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.0",
+    "carousel": "^0.0.3",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0"
+    "react-icons": "^4.12.0",
+    "react-material-ui-carousel": "^3.4.2"
   },
   "devDependencies": {
     "eslint": "^8",
