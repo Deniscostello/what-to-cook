@@ -1,4 +1,4 @@
-import AddFood from "@/components/AddFood";
+import AddFood from "@/components/AddFood/AddFood";
 
 function AddFoodPage() {
     return <AddFood />
