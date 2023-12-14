@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from './navbar/Navbar';
-import Footer from './Footer';
+import Navbar from '../navbar/Navbar';
+import Footer from '../Footer';
 import classes from './AddFood.module.css';
 import Head from 'next/head';
 
