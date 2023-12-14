@@ -1,33 +1,26 @@
-// Lets do all database stuff here and just share this global context with the rest of the App
-// - so no database code anywhere else in our App
-// - every CRUD function the App needs to do is in here, in one place
-// - makes debugging etc so much easier
-// - all external connections still have to go through /api routes 
-
 import { createContext, useState, useEffect } from 'react'
 
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, meetings: [], dataLoaded: false })
+    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], dataLoaded: false })
 
-    // useEffect(() => {
-    //     getAllMeetings()
-    // }, []);
+    useEffect(() => {
+        getAllFoods()
+    }, []);
 
-    // async function getAllMeetings() {
-    //     const response = await fetch('/api/get-meetings', {
-    //         method: 'POST',
-    //         body: JSON.stringify({ meetups: 'all' }),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     });
-    //     let data = await response.json();
-    //     console.log(data);
-    //     setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.meetings = data.meetings; newGlobals.dataLoaded = true; console.log(newGlobals); return newGlobals })
+    async function getAllFoods() {
+        const response = await fetch('/api/get-foods', {
+            method: 'POST',
+            body: JSON.stringify({ foods: 'all' }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        let data = await response.json();
+        setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.meetings = data.meetings; newGlobals.dataLoaded = true; console.log(newGlobals); return newGlobals })
         
-    // }
+    }
 
     async function editGlobalData(command) { // {cmd: someCommand, newVal: 'new text'}
         if (command.cmd == 'hideHamMenu') { // {cmd: 'hideHamMenu', newVal: false} 
