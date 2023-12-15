@@ -3,10 +3,14 @@ import { createContext, useState, useEffect } from 'react'
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], dataLoaded: false })
+    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [],  dataLoaded: false })
 
     useEffect(() => {
         getAllFoods()
+    }, []);
+
+    useEffect(() => {
+        getAllUsers()
     }, []);
 
     async function getAllFoods() {
@@ -18,16 +22,33 @@ export function GlobalContextProvider(props) {
             }
         });
         let data = await response.json();
-        console.log(data)
         setGlobals((previousGlobals) => { 
             const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
             newGlobals.foods = data.foods; 
             newGlobals.dataLoaded = true; 
-            console.log(newGlobals); 
             return newGlobals 
         })
         
     }
+
+    async function getAllUsers() {
+        const response = await fetch('/api/get-user', {
+            method: 'POST',
+            body: JSON.stringify({ user: 'all' }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        let data = await response.json();
+        setGlobals((previousGlobals) => { 
+            const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
+            newGlobals.user = data.user; 
+            newGlobals.dataLoaded = true; 
+            return newGlobals 
+        })
+        
+    }
+
 
     async function editGlobalData(command) { // {cmd: someCommand, newVal: 'new text'}
         if (command.cmd == 'hideHamMenu') { // {cmd: 'hideHamMenu', newVal: false} 

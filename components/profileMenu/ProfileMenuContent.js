@@ -8,6 +8,7 @@ export default function ProfileMenuContent(props) {
     const globalCtx = useContext(GlobalContext)
     const router = useRouter()
     let [popupToggle, setPopupToggle] = useState(false)
+    console.log(props)
 
     if (globalCtx.theGlobalObject.hideProfileMenu) {
         return null
@@ -27,6 +28,10 @@ export default function ProfileMenuContent(props) {
         }
     }
 
+    let contentJsx = props.contents.map((item, index) => ( 
+        <p key={index} >{item.name} {item.email} </p>
+    ))
+
     //  let contentJsx = <div className={classes.menuItem} onClick={() => clicked(item.webAddress)} >Hello </div>
 
     return (
@@ -37,20 +42,19 @@ export default function ProfileMenuContent(props) {
                         <button onClick={() => closeMe()}> X</button>
                         </div>
                     <div className={classes.titleDiv}>
-                        UserName
-                    </div>
-                    
+                        My Profile
+                    </div> 
                 </div>
                 <div className={classes.profileContent}>
-                     {/* {contentJsx}  */}
                     <div className={classes.profileImageDiv}>
-                        <CgProfile />
-                        <p>Edit Profile</p>
+                        <CgProfile className={classes.profileDiv} /> 
                     </div>
-                    <div className={classes.profileContentDiv}>
-                        <p>UserName </p>
+                    <div className={classes.editProfileDiv}>
+                    <p>Edit Profile</p>
                     </div>
-                    
+                    <div className={classes.userProfileDiv}>
+                    <div>{contentJsx}</div>
+                    </div>
                 </div>
                 <div className={classes.logoutDiv}>
                     Log Out
