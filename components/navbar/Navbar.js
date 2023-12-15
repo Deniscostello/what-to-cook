@@ -9,9 +9,7 @@ import { useRouter } from 'next/router';
 import GlobalContext from '@/pages/store/globalContext';
 
 function Navbar() {
-
   const globalCtx = useContext(GlobalContext)
-  const router = useRouter()
 
   function toggleMenuHide() {
     globalCtx.updateGlobals({cmd: 'hideHamMenu', newVal: false})
@@ -21,11 +19,12 @@ function Navbar() {
     globalCtx.updateGlobals({cmd: 'hideProfileMenu', newVal: false})
   }
 
+  const contents = []
+  globalCtx.theGlobalObject.user.forEach(element => {
+    contents.push({name: element.name, email: element.email})    
+  });
 
-  const contents = [
-    {title: 'Challenge: fix this!', webAddress: '/'}, 
-    {title: 'Challenge: fix this!', webAddress: '/'}, 
-  ]
+
 
   return (
     <div className={classes.App}>
@@ -34,7 +33,7 @@ function Navbar() {
         <HamMenu  toggleMenuHide={() => toggleMenuHide()}/>
       <p>What To Cook</p>
       {/* <div className={classes.profileDiv}><CgProfile /></div> */}
-      <ProfileMenuContent />
+      <ProfileMenuContent contents ={contents}/>
       <ProfileMenu toggleProfileHide={() => toggleProfileHide()}/>
      
     </header>
