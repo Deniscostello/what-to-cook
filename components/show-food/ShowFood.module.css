@@ -7,29 +7,42 @@
   align-items: center;
 }
 
-.listOne {
-  height: 25%;
-  width: 100%;
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 20%;
+  width: 80%;
   margin: 5px;
-  border: 2px solid red;
 }
 
-.listTwo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 25%;
+.list img {
+  height: 100%;
   width: 100%;
-  margin: 5px;
-  border: 2px solid red;
+  object-fit:fill;
 }
 
-.listThree {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 25%;
-  width: 100%;
-  margin: 5px;
-  border: 2px solid red;
+.selectionOne {
+  border: 1px solid black;
+  width: 25%;
+  height: 90%;
 }
+
+.selectionTwo {
+  border: 1px solid black;
+  width: 25%;
+  height: 90%;
+}
+
+.selectionThree {
+  border: 1px solid black;
+  width: 25%;
+  height: 90%;
+}
+.titleDiv {
+  width: 80%;
+}
+
+
+
+

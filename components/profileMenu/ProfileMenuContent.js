@@ -8,7 +8,6 @@ export default function ProfileMenuContent(props) {
     const globalCtx = useContext(GlobalContext)
     const router = useRouter()
     let [popupToggle, setPopupToggle] = useState(false)
-    console.log(props)
 
     if (globalCtx.theGlobalObject.hideProfileMenu) {
         return null
