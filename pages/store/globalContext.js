@@ -66,18 +66,19 @@ export function GlobalContextProvider(props) {
                 newGlobals.hideProfileMenu = command.newVal; return newGlobals
             })
         }
-        if (command.cmd == 'addMeeting') {
-            const response = await fetch('/api/new-meetup', {
+        if (command.cmd == 'addFood') {
+            console.log(command.newVal);
+            const response = await fetch('/api/new-food', {
                 method: 'POST',
                 body: JSON.stringify(command.newVal),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            const data = await response.json(); // Should check here that it worked OK
+            const data = await response.json(); 
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
-                newGlobals.meetings.push(command.newVal); return newGlobals
+                newGlobals.foods.push(command.newVal); return newGlobals
             })
         }
     }

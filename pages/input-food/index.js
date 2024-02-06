@@ -1,7 +1,17 @@
 import AddFood from "@/components/AddFood/AddFood";
+import { useRouter } from "next/router";
+import GlobalContext from "../store/globalContext";
+import { useContext } from "react";
 
 function AddFoodPage() {
-    return <AddFood />
+    const router = useRouter()
+    const globalCtx = useContext(GlobalContext)
+
+    async function addFoodHandler(enteredFoodData)  {
+        await globalCtx.updateGlobals({cmd: 'addFood', newVal: enteredFoodData})
+        router.push('/');
+    }
+    return <AddFood onAddFood ={addFoodHandler} />
 
 }
 
