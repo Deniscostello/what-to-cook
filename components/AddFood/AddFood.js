@@ -1,10 +1,71 @@
-import React, { useRef } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import classes from './AddFood.module.css';
 import Head from 'next/head';
 
 function AddFood(props) {
   const foodIdInputRef = useRef();
   const FoodURLInputRef = useRef();
+  const cameraPreviewEl = useRef(null);
+  const [capturing, setCapturing] = useState(false);
+
+  const beginCapture = useCallback(
+    async () => {
+      if (!cameraPreviewEl.current) {
+        return;
+      }
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      cameraPreviewEl.current.srcObject = stream;
+      cameraPreviewEl.current.play();
+      setCapturing(true);
+      } catch (error) {
+        console.log('Error accessing camera: ', error);
+      }
+    },
+    [cameraPreviewEl],
+  );
+
+  const takeSnapshot = useCallback(
+    () => {
+      if (!cameraPreviewEl.current) {
+        return;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = 800;
+      canvas.height = 600;
+  
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        return;
+      }
+  
+      ctx.drawImage(cameraPreviewEl.current, 0, 0, canvas.width, canvas.height);
+    },
+    []
+  );
+
+//   async function getAllFoods() {
+//     const response = await fetch('/api/get-foods', {
+//         method: 'POST',
+//         body: JSON.stringify({ foods: 'all' }),
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     });
+//     let data = await response.json();
+//     setGlobals((previousGlobals) => { 
+//         const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
+//         newGlobals.foods = data.foods; 
+//         newGlobals.dataLoaded = true; 
+//         return newGlobals 
+//     })
+    
+// }
+  
+  
+
+
+
 
   function submitHandler(event) {
     event.preventDefault();
@@ -32,7 +93,17 @@ function AddFood(props) {
         <div>
           <h1>Add Image</h1>
         </div>
-        <form className={classes.form} onSubmit={submitHandler}>
+        <div className={classes.description}>
+          <a onClick={beginCapture}>Click to take a photo</a>
+        </div>
+        <video className={classes.video} ref={cameraPreviewEl} />
+        {capturing &&
+          (
+            <button className={classes.snapshot} onClick={takeSnapshot}>
+              📸
+            </button>
+          )}
+        {/* <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor='foodId'>Food Id</label>
             <input type='text' required id='foodId' ref={foodIdInputRef} />
@@ -44,7 +115,7 @@ function AddFood(props) {
           <div className={classes.buttonDiv}>
             <button>Add Food</button>
           </div>
-        </form>
+        </form> */}
       </div>
     </>
 
