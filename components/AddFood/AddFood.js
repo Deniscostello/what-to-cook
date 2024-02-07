@@ -1,12 +1,15 @@
 import React, { useRef, useCallback, useState } from 'react'
 import classes from './AddFood.module.css';
 import Head from 'next/head';
+import { FoodRecognitionResponse } from '@/types'
+import { postFoodRecognition } from '@/utils/postFoodRecognition';
 
 function AddFood(props) {
   const foodIdInputRef = useRef();
   const FoodURLInputRef = useRef();
   const cameraPreviewEl = useRef(null);
   const [capturing, setCapturing] = useState(false);
+  const [response, setResponse] = useState();
 
   const beginCapture = useCallback(
     async () => {
@@ -38,33 +41,18 @@ function AddFood(props) {
       if (!ctx) {
         return;
       }
-  
       ctx.drawImage(cameraPreviewEl.current, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          return null;
+        }
+        const resp = await postFoodRecognition(blob);
+        setResponse(resp);
+        console.log(resp);
+      });
     },
     []
   );
-
-//   async function getAllFoods() {
-//     const response = await fetch('/api/get-foods', {
-//         method: 'POST',
-//         body: JSON.stringify({ foods: 'all' }),
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     });
-//     let data = await response.json();
-//     setGlobals((previousGlobals) => { 
-//         const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
-//         newGlobals.foods = data.foods; 
-//         newGlobals.dataLoaded = true; 
-//         return newGlobals 
-//     })
-    
-// }
-  
-  
-
-
 
 
   function submitHandler(event) {

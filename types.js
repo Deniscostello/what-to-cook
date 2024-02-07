@@ -4,8 +4,8 @@
  */
 const FoodRecognitionResponse = {
     recognized: true,
-    name: string,
-    score: number,
+    name: String,
+    score: Number,
   } | {
     recognized: false
   }

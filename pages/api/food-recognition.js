@@ -1,5 +1,4 @@
 import { FoodRecognitionResponse } from '@/types';
-import { NextApiRequest, NextApiResponse } from 'next'
 
 export default function handler(req,res) {
   if (req.method !== 'POST') {
