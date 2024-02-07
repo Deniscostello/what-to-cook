@@ -3,6 +3,8 @@ import classes from './AddFood.module.css';
 import Head from 'next/head';
 import { FoodRecognitionResponse } from '@/types'
 import { postFoodRecognition } from '@/utils/postFoodRecognition';
+import FoodResult from './FoodResult';
+
 
 function AddFood(props) {
   const foodIdInputRef = useRef();
@@ -10,6 +12,7 @@ function AddFood(props) {
   const cameraPreviewEl = useRef(null);
   const [capturing, setCapturing] = useState(false);
   const [response, setResponse] = useState();
+  const [snapshot, setSnapshot] = useState();
 
   const beginCapture = useCallback(
     async () => {
@@ -46,6 +49,12 @@ function AddFood(props) {
         if (!blob) {
           return null;
         }
+
+        if(snapshot) {
+          URL.revokeObjectURL(snapshot)
+        }
+        setSnapshot(URL.createObjectURL(blob))
+        
         const resp = await postFoodRecognition(blob);
         setResponse(resp);
         console.log(resp);

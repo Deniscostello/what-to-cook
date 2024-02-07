@@ -22,3 +22,5 @@ function FoodResult(props) {
         </div>
     )
 }
+
+export default FoodResult;
