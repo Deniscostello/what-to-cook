@@ -1,4 +1,3 @@
-import { FoodRecognitionResponse } from "@/types";
 
 export async function postFoodRecognition(snapshot) {
   const formdata = new FormData();

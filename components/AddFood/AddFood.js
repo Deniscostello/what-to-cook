@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { FoodRecognitionResponse } from '@/types'
 import { postFoodRecognition } from '@/utils/postFoodRecognition';
 import FoodResult from './FoodResult';
+import ImageUploading from 'react-images-uploading';
 
 
 function AddFood(props) {
@@ -13,6 +14,7 @@ function AddFood(props) {
   const [capturing, setCapturing] = useState(false);
   const [response, setResponse] = useState();
   const [snapshot, setSnapshot] = useState();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const beginCapture = useCallback(
     async () => {
@@ -30,6 +32,11 @@ function AddFood(props) {
     },
     [cameraPreviewEl],
   );
+
+  const addImage = async () => {
+    console.log(selectedImage)
+
+  }
 
   const takeSnapshot = useCallback(
     () => {
@@ -93,6 +100,17 @@ function AddFood(props) {
         <div className={classes.description}>
           <a onClick={beginCapture}>Click to take a photo</a>
         </div>
+        <div className={classes.description}>
+          <a onClick={addImage}> Click to upload an image</a>
+          <input
+        type="file"
+        name="myImage"
+        onChange={(event) => {
+          console.log(event.target.files[0]);
+          setSelectedImage(event.target.files[0]);
+        }}
+      />
+        </div>
         <video className={classes.video} ref={cameraPreviewEl} />
         {capturing &&
           (
@@ -100,6 +118,8 @@ function AddFood(props) {
               📸
             </button>
           )}
+
+          
         {/* <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor='foodId'>Food Id</label>

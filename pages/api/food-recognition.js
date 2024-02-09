@@ -1,14 +1,19 @@
-import { FoodRecognitionResponse } from '@/types';
+import { getSnapshotFileFromRequestBody } from '@/utils/getSnapshotFileFromRequestBody';
+import { predictFood } from '@/utils/predictFood';
 
-export default function handler(req,res) {
+export default async function handler(req,res) {
   if (req.method !== 'POST') {
     console.warn(`Method ${req.method} not allowed for endpoint /food-recognition!`);
     return res.status(405).end();
   }
-  const score = Math.random();
-  const response = score > 0.4
-    ? { name: 'John Doe', score, recognized: true }
-    : { recognized: false };
+  const file = await getSnapshotFileFromRequestBody(req);
+  const resp = await predictFood(file);
 
-  res.status(200).json(response);
+  res.status(200).json(resp);
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
