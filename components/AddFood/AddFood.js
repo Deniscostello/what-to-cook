@@ -23,20 +23,15 @@ function AddFood(props) {
       }
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      cameraPreviewEl.current.srcObject = stream;
-      cameraPreviewEl.current.play();
-      setCapturing(true);
+        cameraPreviewEl.current.srcObject = stream;
+        cameraPreviewEl.current.play();
+        setCapturing(true);
       } catch (error) {
         console.log('Error accessing camera: ', error);
       }
     },
     [cameraPreviewEl],
   );
-
-  const addImage = async () => {
-    console.log(selectedImage)
-
-  }
 
   const takeSnapshot = useCallback(
     () => {
@@ -46,7 +41,7 @@ function AddFood(props) {
       const canvas = document.createElement('canvas');
       canvas.width = 800;
       canvas.height = 600;
-  
+
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         return;
@@ -57,11 +52,11 @@ function AddFood(props) {
           return null;
         }
 
-        if(snapshot) {
+        if (snapshot) {
           URL.revokeObjectURL(snapshot)
         }
         setSnapshot(URL.createObjectURL(blob))
-        
+
         const resp = await postFoodRecognition(blob);
         setResponse(resp);
         console.log(resp);
@@ -69,21 +64,6 @@ function AddFood(props) {
     },
     []
   );
-
-
-  function submitHandler(event) {
-    event.preventDefault();
-
-    const enteredFoodId = foodIdInputRef.current.value;
-    const enteredFoodURL = FoodURLInputRef.current.value;
-
-    const foodData = {
-      foodId: enteredFoodId,
-      foodImage: enteredFoodURL,
-    };
-
-    props.onAddFood(foodData);
-  }
 
   return (
     <>
@@ -94,45 +74,26 @@ function AddFood(props) {
       </Head>
 
       <div className={classes.mainDiv}>
-        <div>
-          <h1>Add Image</h1>
-        </div>
-        <div className={classes.description}>
-          <a onClick={beginCapture}>Click to take a photo</a>
-        </div>
-        <div className={classes.description}>
-          <a onClick={addImage}> Click to upload an image</a>
-          <input
-        type="file"
-        name="myImage"
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          setSelectedImage(event.target.files[0]);
-        }}
-      />
-        </div>
-        <video className={classes.video} ref={cameraPreviewEl} />
-        {capturing &&
-          (
-            <button className={classes.snapshot} onClick={takeSnapshot}>
-              📸
-            </button>
-          )}
-
-          
-        {/* <form className={classes.form} onSubmit={submitHandler}>
-          <div className={classes.control}>
-            <label htmlFor='foodId'>Food Id</label>
-            <input type='text' required id='foodId' ref={foodIdInputRef} />
+        <div className={classes.capture}>
+          <div className={classes.description}>
+            <button onClick={beginCapture}>Click Open Camera</button>
           </div>
-          <div className={classes.control}>
-            <label htmlFor='foodImage'>Food Image</label>
-            <input type='url' required id='foodImage' ref={FoodURLInputRef} />
+          <div className={classes.videoDiv}>
+            <video className={classes.video} ref={cameraPreviewEl} />
           </div>
-          <div className={classes.buttonDiv}>
-            <button>Add Food</button>
+          <div className={classes.takePicture}>
+            {capturing &&
+              (
+                <button onClick={takeSnapshot}>
+                  Click To Take Picture
+                </button>
+              )
+            }
           </div>
-        </form> */}
+        </div>
+        <div className={classes.result}>
+              {snapshot && <FoodResult response={response} snapshot={snapshot} />}
+            </div>
       </div>
     </>
 
@@ -140,3 +101,13 @@ function AddFood(props) {
 }
 
 export default AddFood;
+
+{/* <a onClick={addImage}> Click to upload an image</a>
+<input
+type="file"
+name="myImage"
+onChange={(event) => {
+console.log(event.target.files[0]);
+setSelectedImage(event.target.files[0]);
+}}
+/> */}

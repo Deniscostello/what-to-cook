@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { FoodRecognitionResponse } from '@/types';
 import classes from './FoodResult.module.css';
 
 function FoodResult(props) {
@@ -15,12 +14,30 @@ function FoodResult(props) {
 
     return (
         <div className={classes.result}>
-            <Image src={props.snapshot} alt="Preview" id="frame" width={800} height={600} />
+            <div className={classes.image}>
+            <Image fill={true} src={props.snapshot} className={classes.image} alt="Preview" id="frame"  />
+            </div>
+
             {thinking &&
-            <p className={'${classes.output} ${styles.thinking}'}>...</p>}
+            <p className={classes.thinking}>🧠</p>}
             {output}
         </div>
     )
 }
 
 export default FoodResult;
+
+
+
+
+
+
+//   return (
+//     <div className={styles.result}>
+//       <Image src={props.snapshot} alt="Preview" id="frame" width={800} height={600} />
+//       { thinking && 
+//         <p className={`${styles.output} ${styles.thinking}`}>🧠</p>}
+//       { output }
+//     </div>
+//   );
+// }
