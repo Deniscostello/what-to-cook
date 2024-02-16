@@ -51,19 +51,31 @@ function AddFood(props) {
         if (!blob) {
           return null;
         }
-
+        console.log(blob)
         if (snapshot) {
           URL.revokeObjectURL(snapshot)
         }
+
         setSnapshot(URL.createObjectURL(blob))
+
 
         const resp = await postFoodRecognition(blob);
         setResponse(resp);
-        console.log(resp);
+        //console.log(resp);
       });
     },
     []
   );
+
+  async function uploadHandler() {
+
+    console.log(selectedImage)
+    setSnapshot(URL.createObjectURL(selectedImage))
+    const resp = await postFoodRecognition(selectedImage);
+    setResponse(resp);
+    
+  }
+
 
   return (
     <>
@@ -91,9 +103,21 @@ function AddFood(props) {
             }
           </div>
         </div>
+        <div className={classes.inputImage}>
+          <h1 > Click to upload an image</h1>
+          <input
+            type="file"
+            name="myImage"
+            onChange={(event) => {
+              console.log(event.target.files[0]);
+              setSelectedImage(event.target.files[0]);
+            }}
+          />
+          <button onClick={uploadHandler}> Submit</button>
+        </div>
         <div className={classes.result}>
-              {snapshot && <FoodResult response={response} snapshot={snapshot} />}
-            </div>
+          {snapshot && <FoodResult response={response} snapshot={snapshot} />}
+        </div>
       </div>
     </>
 
@@ -102,12 +126,3 @@ function AddFood(props) {
 
 export default AddFood;
 
-{/* <a onClick={addImage}> Click to upload an image</a>
-<input
-type="file"
-name="myImage"
-onChange={(event) => {
-console.log(event.target.files[0]);
-setSelectedImage(event.target.files[0]);
-}}
-/> */}

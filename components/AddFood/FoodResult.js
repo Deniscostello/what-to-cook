@@ -6,7 +6,7 @@ function FoodResult(props) {
 
     let output = null;
     if(props.response) {
-        console.log(props.response)
+        //console.log(props.response)
         output = !props.response.recognized 
         ? <p className={'${classes.output} ${classes.message}'}>Cannot recognize food item!</p>
         : <p className={'${classes.output} ${classes.message}'}>Item recognized as {props.response.name}</p>
