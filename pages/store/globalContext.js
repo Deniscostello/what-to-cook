@@ -67,7 +67,6 @@ export function GlobalContextProvider(props) {
             })
         }
         if (command.cmd == 'addFood') {
-            console.log(command.newVal);
             const response = await fetch('/api/new-food', {
                 method: 'POST',
                 body: JSON.stringify(command.newVal),

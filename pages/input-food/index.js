@@ -7,12 +7,13 @@ function AddFoodPage() {
     const router = useRouter()
     const globalCtx = useContext(GlobalContext)
 
-    // async function addFoodHandler(enteredFoodData)  {
-    //     await globalCtx.updateGlobals({cmd: 'addFood', newVal: enteredFoodData})
-    //     router.push('/');
-    // }
-    // return <AddFood onAddFood ={addFoodHandler} />
-    return <AddFood  />
+    async function addFoodHandler(enteredFoodData)  {
+        console.log(enteredFoodData)
+        await globalCtx.updateGlobals({cmd: 'addFood', newVal: enteredFoodData})
+        // router.push('/');
+    }
+    return <AddFood onAddFood ={addFoodHandler} />
+    // return <AddFood  />
 
 }
 

@@ -1,11 +1,9 @@
-import React, { useRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState , useEffect} from 'react'
 import classes from './AddFood.module.css';
 import Head from 'next/head';
 import { FoodRecognitionResponse } from '@/types'
 import { postFoodRecognition } from '@/utils/postFoodRecognition';
 import FoodResult from './FoodResult';
-import ImageUploading from 'react-images-uploading';
-
 
 function AddFood(props) {
   const foodIdInputRef = useRef();
@@ -15,6 +13,8 @@ function AddFood(props) {
   const [response, setResponse] = useState();
   const [snapshot, setSnapshot] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
+
+
 
   const beginCapture = useCallback(
     async () => {
@@ -51,31 +51,38 @@ function AddFood(props) {
         if (!blob) {
           return null;
         }
-        console.log(blob)
         if (snapshot) {
           URL.revokeObjectURL(snapshot)
         }
-
         setSnapshot(URL.createObjectURL(blob))
 
 
         const resp = await postFoodRecognition(blob);
         setResponse(resp);
-        //console.log(resp);
       });
     },
     []
   );
 
   async function uploadHandler() {
-
-    console.log(selectedImage)
     setSnapshot(URL.createObjectURL(selectedImage))
     const resp = await postFoodRecognition(selectedImage);
-    setResponse(resp);
-    
+    setResponse(resp);    
   }
 
+  useEffect(() => {
+    if (response && response.name) {
+      const enteredName = response.name;
+      const enteredImage = selectedImage;
+      console.log(snapshot.blob)
+      const foodData = {
+        name: enteredName,
+        image: snapshot,
+      };
+  
+      props.onAddFood(foodData);
+    }
+  }, [response]);
 
   return (
     <>
@@ -109,20 +116,17 @@ function AddFood(props) {
             type="file"
             name="myImage"
             onChange={(event) => {
-              console.log(event.target.files[0]);
               setSelectedImage(event.target.files[0]);
             }}
           />
           <button onClick={uploadHandler}> Submit</button>
         </div>
         <div className={classes.result}>
-          {snapshot && <FoodResult response={response} snapshot={snapshot} />}
+          {snapshot && <FoodResult response={response} snapshot={snapshot}/>}
         </div>
       </div>
     </>
 
   )
 }
-
 export default AddFood;
-
