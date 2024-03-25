@@ -66,15 +66,21 @@ export function GlobalContextProvider(props) {
                 newGlobals.hideProfileMenu = command.newVal; return newGlobals
             })
         }
+        if (command.cmd == 'hideProfileMenu') { 
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.hideProfileMenu = command.newVal; return newGlobals
+            })
+        }
         if (command.cmd == 'addFood') {
-            const response = await fetch('/api/new-food', {
-                method: 'POST',
-                body: JSON.stringify(command.newVal),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json(); 
+            // const response = await fetch('/api/new-food', {
+            //     method: 'POST',
+            //     body: JSON.stringify(command.newVal),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // });
+            // const data = await response.json(); 
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
                 newGlobals.foods.push(command.newVal); return newGlobals

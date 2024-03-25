@@ -35,7 +35,6 @@ function Navbar() {
       {/* <div className={classes.profileDiv}><CgProfile /></div> */}
       <ProfileMenuContent contents ={contents}/>
       <ProfileMenu toggleProfileHide={() => toggleProfileHide()}/>
-     
     </header>
   </div>
   )

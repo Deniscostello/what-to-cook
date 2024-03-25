@@ -1,9 +1,10 @@
-import React, { useRef, useCallback, useState , useEffect} from 'react'
+import React, { useRef, useCallback, useState, useEffect } from 'react'
 import classes from './AddFood.module.css';
 import Head from 'next/head';
 import { FoodRecognitionResponse } from '@/types'
 import { postFoodRecognition } from '@/utils/postFoodRecognition';
 import FoodResult from './FoodResult';
+import GlobalContext from '@/pages/store/globalContext';
 
 function AddFood(props) {
   const foodIdInputRef = useRef();
@@ -13,6 +14,8 @@ function AddFood(props) {
   const [response, setResponse] = useState();
   const [snapshot, setSnapshot] = useState();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [streamValue, setStreamValue] = useState();
+  const [foodName, setFoodName] = useState();
 
 
 
@@ -23,6 +26,7 @@ function AddFood(props) {
       }
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        setStreamValue(stream)
         cameraPreviewEl.current.srcObject = stream;
         cameraPreviewEl.current.play();
         setCapturing(true);
@@ -32,6 +36,15 @@ function AddFood(props) {
     },
     [cameraPreviewEl],
   );
+
+  function endCapture() {
+    streamValue.getTracks().forEach((track) => {
+        if (track.readyState == 'live' && track.kind === 'video') {
+            track.stop();
+        } 
+    });
+    setCapturing(false);
+}
 
   const takeSnapshot = useCallback(
     () => {
@@ -67,22 +80,23 @@ function AddFood(props) {
   async function uploadHandler() {
     setSnapshot(URL.createObjectURL(selectedImage))
     const resp = await postFoodRecognition(selectedImage);
-    setResponse(resp);    
+    setResponse(resp);
   }
+  
+  async function addFoodNameHandler(enteredFoodName)  {
+    setFoodName(enteredFoodName)
+}
 
   useEffect(() => {
-    if (response && response.name) {
-      const enteredName = response.name;
-      const enteredImage = selectedImage;
-      console.log(snapshot.blob)
+    if (response && foodName) {
       const foodData = {
-        name: enteredName,
+        name: foodName,
         image: snapshot,
       };
-  
+      setSnapshot(false)
       props.onAddFood(foodData);
     }
-  }, [response]);
+  }, [foodName]);
 
   return (
     <>
@@ -95,8 +109,10 @@ function AddFood(props) {
       <div className={classes.mainDiv}>
         <div className={classes.capture}>
           <div className={classes.description}>
-            <button onClick={beginCapture}>Click Open Camera</button>
+            <button onClick={beginCapture}>Open Camera</button>
+            <button onClick={endCapture}>Close Camera</button>
           </div>
+
           <div className={classes.videoDiv}>
             <video className={classes.video} ref={cameraPreviewEl} />
           </div>
@@ -122,7 +138,9 @@ function AddFood(props) {
           <button onClick={uploadHandler}> Submit</button>
         </div>
         <div className={classes.result}>
-          {snapshot && <FoodResult response={response} snapshot={snapshot}/>}
+          {snapshot && 
+          <FoodResult response={response} snapshot={snapshot}  onAddFoodName ={addFoodNameHandler}/>
+          }
         </div>
       </div>
     </>
