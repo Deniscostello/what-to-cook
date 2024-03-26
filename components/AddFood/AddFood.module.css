@@ -1,88 +1,74 @@
 .mainDiv {
-    background-color: whitesmoke;
-    height: 86vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: whitesmoke;
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  align-items: center;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  height: 55%;
+}
+.result {
+  display: flex;
+  height: 45%;
+  justify-content: center;
+  align-items: center;
+
 }
 
-  .picture {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1%;
 
-  }
-  .capture {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    height: 45%;
-  }
-
-  .description {
-    display: flex;
-    justify-content: flex-start;
-    font: inherit;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .videoDiv {
-    display: flex;
-    width: 100%;
-    height: 70%;
-    justify-content: center;
-  }
-
-  .videoDiv video {
-    height: auto;
-    width: auto;
-  }
-
-  .takePicture {
-    display: flex;
-    margin-top: 1%;
-    width: 100%;
-    justify-content: center;
-    cursor: pointer;
-  }
-  .takePicture button {
-    font: inherit;
-    cursor: pointer;
-    color:  #1a2920;
-    border: 1px solid #77002e;
-    background-color: transparent;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-  }
-  
-  .takePicture button:hover,
-  .takePicture button:active {
-    background-color: #ffe2ed;
-  }
-  
-  .description button {
-    font: inherit;
-    cursor: pointer;
-    color:  #1a2920;
-    border: 1px solid #77002e;
-    background-color: transparent;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-  }
-  
-  .description button:hover,
-  .description button:active {
-    background-color: #ffe2ed;
-  }
-
-  .result {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 45%;
-  }
+.inputImage {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 
+.options {
+  display: flex;
+  justify-content: center;
+}
+
+.videoDiv {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  justify-content: center;
+}
+
+.videoDiv video {
+  height: auto;
+  width: auto;
+}
+
+.takePicture {
+  display: flex;
+  margin-top: 1%;
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.inputImage button {
+  font: inherit;
+  cursor: pointer;
+  color: #1a2920;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+}
+
+.inputImage button:hover,
+.inputImage button:active {
+  background-color: #ffe2ed;
+}

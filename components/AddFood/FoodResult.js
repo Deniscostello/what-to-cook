@@ -20,7 +20,7 @@ function FoodResult(props) {
       }
     
     if(props.response) {
-        output = !props.response.recognized ? <p className={classes.output}>Cannot recognize food item!</p> 
+        output = !props.response.recognized ?<div className={classes.output}> <p className={classes.output}>Cannot recognize food item!</p>  <input  type='text' required id='name' ref={nameInputRef}></input><button onClick={ () => setCorrectName((nameInputRef.current.value))}>Submit text</button></div> 
         : <div className={classes.output}> 
             <p>Item recognized as {props.response.name}</p> 
             <button onClick={ () => setCorrectName((props.response.name))}>Confirm {props.response.name} is correct </button> <button onClick={ () => setInputText(true)}>Or input the correct name</button>
