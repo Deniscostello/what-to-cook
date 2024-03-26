@@ -11,13 +11,13 @@ function AddFood(props) {
   const FoodURLInputRef = useRef();
   const cameraPreviewEl = useRef(null);
   const [capturing, setCapturing] = useState(false);
-  const [response, setResponse] = useState();
-  const [snapshot, setSnapshot] = useState();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [streamValue, setStreamValue] = useState();
-  const [foodName, setFoodName] = useState();
-
-
+  const [response, setResponse] = useState()
+  const [snapshot, setSnapshot] = useState()
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [streamValue, setStreamValue] = useState()
+  const [foodName, setFoodName] = useState()
+  const [showCamera, setShowCamera] = useState(false)
+  const [showFile, setShowFile] = useState(false)
 
   const beginCapture = useCallback(
     async () => {
@@ -39,12 +39,12 @@ function AddFood(props) {
 
   function endCapture() {
     streamValue.getTracks().forEach((track) => {
-        if (track.readyState == 'live' && track.kind === 'video') {
-            track.stop();
-        } 
+      if (track.readyState == 'live' && track.kind === 'video') {
+        track.stop();
+      }
     });
     setCapturing(false);
-}
+  }
 
   const takeSnapshot = useCallback(
     () => {
@@ -82,10 +82,10 @@ function AddFood(props) {
     const resp = await postFoodRecognition(selectedImage);
     setResponse(resp);
   }
-  
-  async function addFoodNameHandler(enteredFoodName)  {
+
+  async function addFoodNameHandler(enteredFoodName) {
     setFoodName(enteredFoodName)
-}
+  }
 
   useEffect(() => {
     if (response && foodName) {
@@ -98,6 +98,23 @@ function AddFood(props) {
     }
   }, [foodName]);
 
+  function openCamera() {
+    if (showFile == true) {
+      setShowFile(false)
+    }
+    setShowCamera(prevState => !prevState)
+
+  }
+  function openFile() {
+    if (showCamera == true) {
+      setShowCamera(false)
+    }
+    setShowFile(prevState => !prevState)
+
+  }
+
+
+
   return (
     <>
       <Head>
@@ -107,39 +124,52 @@ function AddFood(props) {
       </Head>
 
       <div className={classes.mainDiv}>
-        <div className={classes.capture}>
-          <div className={classes.description}>
-            <button onClick={beginCapture}>Open Camera</button>
-            <button onClick={endCapture}>Close Camera</button>
-          </div>
-
-          <div className={classes.videoDiv}>
-            <video className={classes.video} ref={cameraPreviewEl} />
-          </div>
-          <div className={classes.takePicture}>
-            {capturing &&
-              (
-                <button onClick={takeSnapshot}>
-                  Click To Take Picture
-                </button>
-              )
-            }
-          </div>
+        <div className={classes.description}>
+          <h1 onClick={openCamera} style={{ cursor: 'pointer' }} > Take picture with camera</h1>
+          <h1 onClick={openFile} style={{ cursor: 'pointer' }} > Upload a File</h1>
         </div>
-        <div className={classes.inputImage}>
-          <h1 > Click to upload an image</h1>
-          <input
-            type="file"
-            name="myImage"
-            onChange={(event) => {
-              setSelectedImage(event.target.files[0]);
-            }}
-          />
-          <button onClick={uploadHandler}> Submit</button>
+        <div className={classes.image}>
+          {showCamera && (
+            <div className={classes.inputImage}>
+              <div className={classes.options}>
+                <button onClick={beginCapture}>Start Camera</button>
+                <button onClick={endCapture}>Stop Camera</button>
+              </div>
+              <div className={classes.videoDiv}>
+                <video className={classes.video} ref={cameraPreviewEl} />
+              </div>
+              <div className={classes.takePicture}>
+                {capturing &&
+                  (
+                    <button onClick={takeSnapshot}>
+                      Click To Take Picture
+                    </button>
+                  )
+                }
+              </div>
+            </div>
+
+          )}
+
+          {showFile && (
+            <div className={classes.inputImage}>
+              <h1 > Click to upload an image</h1>
+              <input
+                type="file"
+                name="myImage"
+                onChange={(event) => {
+                  setSelectedImage(event.target.files[0]);
+                }}
+              />
+              <button onClick={uploadHandler}> Submit</button>
+            </div>
+          )}
+
+
         </div>
         <div className={classes.result}>
-          {snapshot && 
-          <FoodResult response={response} snapshot={snapshot}  onAddFoodName ={addFoodNameHandler}/>
+          {snapshot &&
+            <FoodResult response={response} snapshot={snapshot} onAddFoodName={addFoodNameHandler} />
           }
         </div>
       </div>

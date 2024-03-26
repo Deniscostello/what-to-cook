@@ -5,8 +5,8 @@ import { PostModelOutputsRequest } from 'clarifai-nodejs-grpc/proto/clarifai/api
 import { Data, Input, UserAppIDSet, Image } from 'clarifai-nodejs-grpc/proto/clarifai/api/resources_pb';
 
 const client = new V2Client('api.clarifai.com', grpc.ChannelCredentials.createSsl());
-const MODEL_ID = 'food-item-recognition';
-const CLARIFAI_TOKEN= '68cd5c3001fa4921b7ccf6890de65ae5'
+const MODEL_ID = process.env.CLARIFAI_MODEL
+const CLARIFAI_TOKEN= process.env.CLARIFAI_TOKEN
 
 export async function predictFood(file) {
   const req = new PostModelOutputsRequest()
@@ -37,7 +37,7 @@ export async function predictFood(file) {
         return resolve({ recognized: false });
       }
       const mostLikely = concepts[0];
-      if (mostLikely.getValue() > 0.2) {
+      if (mostLikely.getValue() > 0.6) {
         const response = {
           recognized: true,
           name: concepts[0].getName(),
