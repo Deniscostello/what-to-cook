@@ -2,6 +2,7 @@ import classes from './HamMenuContent.module.css'
 import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import GlobalContext from '../../pages/store/globalContext'
+import Link from 'next/link';
 
 export default function HamMenuContent(props) {
     const globalCtx = useContext(GlobalContext)
@@ -31,11 +32,21 @@ export default function HamMenuContent(props) {
     return (
         <div className={classes.background} onClick={() => closeMe()} >
             <div className={classes.mainContent} >
-                    <div className={classes.buttonDiv}>
-                        <button onClick={() => closeMe()}> X</button>
-                    </div>
+                <div className={classes.buttonDiv}>
+                    <button onClick={() => closeMe()}> X</button>
+                </div>
                 <div className={classes.hamContent}>
-                    {contentJsx}
+                    {/* {contentJsx} */}
+                    <div>
+                        <Link href='/'> Home </Link>
+                    </div>
+                    <div>
+                        <Link href='/input-food'> Add Food</Link>
+                    </div>
+                    <div className={classes.RecipeDiv}>
+                        <Link href='/show-food'> Show Food</Link>
+                    </div>
+
                 </div>
 
             </div>
