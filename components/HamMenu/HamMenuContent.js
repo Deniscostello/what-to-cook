@@ -46,6 +46,9 @@ export default function HamMenuContent(props) {
                     <div className={classes.RecipeDiv}>
                         <Link href='/show-food'> Show Food</Link>
                     </div>
+                    <div className={classes.RecipeDiv}>
+                        <Link href='/show-recipe'> Show Recipes</Link>
+                    </div>
 
                 </div>
 
