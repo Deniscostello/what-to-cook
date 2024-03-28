@@ -84,6 +84,7 @@ function AddFood(props) {
   }
 
   async function addFoodNameHandler(enteredFoodName) {
+    console.log(enteredFoodName)
     setFoodName(enteredFoodName)
   }
 

@@ -16,7 +16,7 @@ function FoodList(props) {
         //      ))}
         // </div>
         <div className={classes.mainDiv}>
-            <div className={classes.carouselDiv}>
+            {/* <div className={classes.carouselDiv}>
                 <h2>Easy and convenient meals based on food you already have</h2>
                 <Carousel className={classes.carouselStyle} >
                     {props.foods.map((food) => (
@@ -30,9 +30,7 @@ function FoodList(props) {
                         </Paper>
                     ))}
                 </Carousel>
-            </div>
-            <div>
-            </div>
+            </div> */}
             <div className={classes.recipeDiv}>
                 <div>Dinner Ideas</div>
                 <div className={classes.dinnerDiv} >

@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react'
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [],  dataLoaded: false })
+    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [], recipes: [],  dataLoaded: false })
 
     useEffect(() => {
         getAllFoods()
@@ -11,6 +11,10 @@ export function GlobalContextProvider(props) {
 
     useEffect(() => {
         getAllUsers()
+    }, []);
+
+    useEffect(() => {
+        getAllRecipes()
     }, []);
 
     async function getAllFoods() {
@@ -25,6 +29,24 @@ export function GlobalContextProvider(props) {
         setGlobals((previousGlobals) => { 
             const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
             newGlobals.foods = data.foods; 
+            newGlobals.dataLoaded = true; 
+            return newGlobals 
+        })
+        
+    }
+
+    async function getAllRecipes() {
+        const response = await fetch('/api/get-recipe', {
+            method: 'POST',
+            body: JSON.stringify({ recipes: 'all' }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        let data = await response.json();
+        setGlobals((previousGlobals) => { 
+            const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
+            newGlobals.recipes = data.recipes; 
             newGlobals.dataLoaded = true; 
             return newGlobals 
         })
@@ -73,14 +95,14 @@ export function GlobalContextProvider(props) {
             })
         }
         if (command.cmd == 'addFood') {
-            // const response = await fetch('/api/new-food', {
-            //     method: 'POST',
-            //     body: JSON.stringify(command.newVal),
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // });
-            // const data = await response.json(); 
+            const response = await fetch('/api/new-food', {
+                method: 'POST',
+                body: JSON.stringify(command.newVal),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json(); 
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
                 newGlobals.foods.push(command.newVal); return newGlobals

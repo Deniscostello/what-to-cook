@@ -1,14 +1,14 @@
-import ShowFood from "@/components/show-food/ShowFood";
 import { useRouter } from "next/router";
 import GlobalContext from "../store/globalContext";
 import { useContext } from "react";
+import ShowRecipeList from "@/components/show-recipe/ShowRecipeList";
 
-function ShowFoodPage() {
+function ShowRecipePage() {
     const router = useRouter()
     const globalCtx = useContext(GlobalContext)
     if (globalCtx.theGlobalObject.dataLoaded == true) {
         return (
-            <ShowFood foods={globalCtx.theGlobalObject.foods} />
+            <ShowRecipeList recipes={globalCtx.theGlobalObject.recipes} />
         )
     }
 
@@ -17,4 +17,4 @@ function ShowFoodPage() {
     )
 }
 
-export default ShowFoodPage;
+export default ShowRecipePage;
