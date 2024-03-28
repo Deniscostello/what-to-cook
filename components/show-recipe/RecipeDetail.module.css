@@ -1,0 +1,9 @@
+.detailDiv {
+    display: flex;
+    margin-top: 30px;
+
+}
+
+.imgDesc {
+    margin-right: 3%;
+}
