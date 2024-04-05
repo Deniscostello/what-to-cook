@@ -8,20 +8,15 @@ async function handler(req, res) {
       'Content-Type': 'application/json'
     },
   });
+  const data = await response.json();
   if (response.ok) {
-    const data = await response.json();
-    //console.log(data)
     const cookieHeader = response.headers.get('Set-Cookie')
-
-
     const serialised = serialize(cookieHeader)
-
     res.setHeader("Set-Cookie", serialised);
-
     res.status(200).json(data)
   }
   else {
-    res.json({ message: "Invalid credentials!" })
+    res.status(401).json({ message: "Invalid credentials!" })
   }
 }
 export default handler;

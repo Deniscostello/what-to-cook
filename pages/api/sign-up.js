@@ -5,10 +5,15 @@ async function handler(req, res) { // can be called anything you like
       headers: {
         'Content-Type': 'application/json'
       }
-    });
-    const data = await response.json();
-    console.log(data)
-    res.json(data)
+    })
+    const data = await response.json()
+    console.log("The error: " + data.message)
+    if (response.ok) {
+      res.status(200).json(data)
+    }
+    else {
+      res.status(401).json({ message: "Username or email already taken!" })
+    }
   }
   
   export default handler;

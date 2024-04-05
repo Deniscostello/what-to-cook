@@ -1,38 +1,37 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { useContext } from "react";
+import { useContext } from "react"
+import SignUpComponent from "@/components/Auth/SignUp"
+import GlobalContext from "../store/globalContext"
 
 export default function SignUp() {
   const router = useRouter()
+  const globalCtx = useContext(GlobalContext)
 
-  const [state, setState] = useState({
-    username: "",
-    email: "",
-    password: ""
-  })
+  async function signUpHandler(enteredData) {
 
-  function handleChange(e) {
-    const copy = { ...state }
-    copy[e.target.name] = e.target.value
-    setState(copy)
+    const response = await fetch('/api/sign-up', {
+      method: 'POST',
+      body: JSON.stringify(enteredData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    if (response.ok) {
+      router.push('/signin');
+    }
+    else {
+      await globalCtx.updateGlobals({ cmd: 'signUpError', newVal: data.message })
+    }
   }
 
-  async function handleSubmit()  {
-    console.log(state)
-    await globalCtx.updateGlobals({cmd: 'signup', newVal: state})
-    // router.push("/signin")
-}
+  if (globalCtx.theGlobalObject.signUpError) {
+    return <SignUpComponent onSignUp={signUpHandler} signUpError={globalCtx.theGlobalObject.signUpError} />
 
-  return (
+  }
 
-      <div >
-        <h1 >Sign Up</h1>
-        <div >
-          <input type="text" name="username" placeholder="username" value={state.username} onChange={handleChange} autoComplete="off" />
-          <input  type="text" name="email" placeholder="email" value={state.email} onChange={handleChange} autoComplete="off" />
-          <input type="password" name="password" placeholder="password" value={state.password} onChange={handleChange} />
-          <button onClick={handleSubmit}>Submit</button>
-        </div>
-      </div>
-  )
+  else {
+    return <SignUpComponent onSignUp={signUpHandler} />
+  }
 }

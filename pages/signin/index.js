@@ -1,53 +1,40 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import SignInComponent from "@/components/Auth/SignIn"
+import GlobalContext from "../store/globalContext"
 
-const SignInComponent = () => {
+const SignIn = () => {
+  const globalCtx = useContext(GlobalContext)
   const router = useRouter()
-    const [state, setState] = useState({
-    username: "",
-    password: ""
-  })
-  const [user, setUser] = useState()
 
-    function handleChange(e) {
-    const copy = { ...state }
-    copy[e.target.name] = e.target.value
-    setState(copy)
+  async function signInHandler(enteredData) {
+
+    const response = await fetch('/api/sign-in', {
+      method: 'POST',
+      body: JSON.stringify(enteredData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data)
+    if (response.ok) {
+      router.push('/');
+    }
+    else {
+      await globalCtx.updateGlobals({ cmd: 'signInError', newVal: data.message })
+    }
+  }
+  
+  if (globalCtx.theGlobalObject.signInError) {
+    return <SignInComponent onSignIn={signInHandler} error={globalCtx.theGlobalObject.signInError} />
+
   }
 
-  async function handleSignIn() {
-    const response = await fetch('/api/sign-in', {
-        method: 'POST',
-        body: JSON.stringify(state),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const data = await response.json(); 
-    if(response.ok) {
-        setUser(data)
-        router.push('/');
-      }
-    
-    }
-
-    function changeToSignout() {
-       router.push('/signup');
-    }
-  return (
-      <div >
-        <h1 >Sign In</h1>
-        <div >
-          <input  type="text" name="username" placeholder="username" value={state.username} onChange={handleChange} autoComplete="off" />
-          <input  type="password" name="password" placeholder="password" value={state.password} onChange={handleChange} />
-          <button onClick={handleSignIn}>Submit</button>
-        </div>
-        <div>
-          <h2>Don't have an account?</h2>
-          <button onClick={changeToSignout}>Sign up here</button>
-        </div>
-      </div>
-  );
+  else{
+    return <SignInComponent onSignIn={signInHandler} />
+  }
+  
 };
 
-export default SignInComponent;
+export default SignIn;

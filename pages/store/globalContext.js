@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react'
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [], recipes: [],  dataLoaded: false })
+    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [], recipes: [], signInError: [],  signUpError: [], dataLoaded: false })
 
     useEffect(() => {
         getAllFoods()
@@ -88,10 +88,24 @@ export function GlobalContextProvider(props) {
                 newGlobals.hideProfileMenu = command.newVal; return newGlobals
             })
         }
+        
         if (command.cmd == 'hideProfileMenu') { 
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
                 newGlobals.hideProfileMenu = command.newVal; return newGlobals
+            })
+        }
+
+        if (command.cmd == 'signInError') { 
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.signInError = command.newVal; return newGlobals
+            })
+        }
+        if (command.cmd == 'signUpError') { 
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.signUpError = command.newVal; return newGlobals
             })
         }
         if (command.cmd == 'addFood') {
