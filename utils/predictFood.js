@@ -37,7 +37,7 @@ export async function predictFood(file) {
         return resolve({ recognized: false });
       }
       const mostLikely = concepts[0];
-      if (mostLikely.getValue() > 0.6) {
+      if (mostLikely.getValue() > 0.4) {
         const response = {
           recognized: true,
           name: concepts[0].getName(),
