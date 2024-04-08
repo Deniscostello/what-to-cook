@@ -91,7 +91,7 @@ function AddFood(props) {
   useEffect(() => {
     if (response && foodName) {
       const foodData = {
-        name: foodName,
+        foodName: foodName,
         image: snapshot,
       };
       setSnapshot(false)
