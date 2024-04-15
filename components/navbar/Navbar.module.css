@@ -17,6 +17,9 @@
 .hamMenu {
   display: flex;
 }
+.links {
+  display: none;
+}
 
 .Title {
   display: flex;
@@ -36,4 +39,16 @@
 .hamMenu {
   display: none;
 }
+.links {
+  background-color: #5D8B63;
+  height: 1.25em;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  align-items: center;
+  color: white;
 }
+}
+
+
+

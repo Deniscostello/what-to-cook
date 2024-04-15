@@ -36,6 +36,7 @@ function Navbar() {
       <div className={classes.Title}>
         <Link href='/'> What To Cook </Link>
       </div>
+
       
  
       {/* <nav className={classes.NavLinks}>
@@ -44,6 +45,11 @@ function Navbar() {
         <Link href='/show-recipe'>Show Recipes</Link>
       </nav> */}
     </header>
+    <div className={classes.links}>
+      <Link href='/input-food'>Add Food</Link>
+        <Link href='/show-food'>Show Food</Link>
+        <Link href='/show-recipe'>Show Recipes</Link>
+      </div>
   </div>
  
  
