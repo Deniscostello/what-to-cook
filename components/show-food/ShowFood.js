@@ -15,10 +15,9 @@ function ShowFood(props) {
 
     <div className={classes.mainDiv}>
       <h1>Current foods</h1>
-      <p>{props.name}</p>
       <ul>
       {props.foods.map((food, index) => (
-        <li key={index}>{food.name}</li>
+        <li key={index}>{food}</li>
       ))}
       </ul>
     </div>
