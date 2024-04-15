@@ -1,70 +1,72 @@
 import FoodItem from './FoodItem';
 import classes from './FoodList.module.css';
-import Carousel from 'react-material-ui-carousel'
-import { Paper } from '@mui/material'
+import Card from './ui/Card';
+import Link from 'next/link';
 
 function FoodList(props) {
     return (
-        // <div>
-        //      {props.foods.map((food) => (
-        //             <FoodItem 
-        //             key={food.id}
-        //             foodId={food.id}
-        //             foodImage={food.foodImage}
-        //             name={food.foodName}
-        //             />
-        //      ))}
-        // </div>
-        <div className={classes.mainDiv}>
-            {/* <div className={classes.carouselDiv}>
-                <h2>Easy and convenient meals based on food you already have</h2>
-                <Carousel className={classes.carouselStyle} >
-                    {props.foods.map((food) => (
-                        <Paper key={food.id}>
-                            <FoodItem
-                                key={food.id}
-                                foodId={food.id}
-                                foodImage={food.foodImage}
-                                name={food.foodName}
-                            />
-                        </Paper>
-                    ))}
-                </Carousel>
-            </div> */}
-            <div className={classes.recipeDiv}>
-                <div>Dinner Ideas</div>
-                <div className={classes.dinnerDiv} >
-                    <img src="https://realfood.tesco.com/media/images/1400x919-OneTrayRoastDinner-17b80fd0-8071-474e-84e5-f19eb03da1b5-0-1400x919.jpg" alt="Dinner" />
-                </div>
-                <div>Light Bites</div>
-                <div className={classes.lightBites}>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVY9nyp-kFy5of2Bid2gbOj_Lz1pqH-OX-HcwYx2wfsA4bLijJqW8R4l0geWRg5JaemEw&usqp=CAU" alt="LightBite" />
+<div className={classes.mainDiv}>
+            <div className={classes.title}>
+                <img src="https://static6.depositphotos.com/1014511/575/i/450/depositphotos_5755752-stock-photo-healthy-eating.jpg" alt="image" />
+                <h1>Welcome to what to cook. Your one stop shop for recipes you can make with your ingredients and reduce food website</h1>
+            </div>
+ 
+            <div className={classes.explore}>
+                <h2>Explore</h2>
+                <div className={classes.options}>
+                    <div className={classes.card}>
+                        <Card >
+                            <div className={classes.image}>
+                                <img src="https://static6.depositphotos.com/1014511/575/i/450/depositphotos_5755752-stock-photo-healthy-eating.jpg" alt="image" />
+                            </div>
+                            <div className={classes.content}>
+                                <p>Add your ingredients here</p>
+                            </div>
+                            <div className={classes.actions}>
+                                <Link href='/input-food'> Add Food</Link>
+                            </div>
+                        </Card>
+                    </div>
+ 
+                    <div className={classes.card}>
+                        <Card className={classes.card}>
+                            <div className={classes.image}>
+                                <img src="https://static6.depositphotos.com/1014511/575/i/450/depositphotos_5755752-stock-photo-healthy-eating.jpg" alt="image" />
+                            </div>
+                            <div className={classes.content}>
+                                <p>View foods that you've added</p>
+                            </div>
+                            <div className={classes.actions}>
+                                <Link href='/show-food'> Show Food </Link>
+                            </div>
+                        </Card>
+                    </div>
+ 
+                    <div className={classes.card}>
+                        <Card className={classes.card}>
+                            <div className={classes.image}>
+                                <img src="https://static6.depositphotos.com/1014511/575/i/450/depositphotos_5755752-stock-photo-healthy-eating.jpg" alt="image" />
+                            </div>
+                            <div className={classes.content}>
+                                <p>Find recipes from foods added</p>
+                            </div>
+                            <div className={classes.actions}>
+                                <Link href='/show-recipe'> Show Recipes </Link>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
             </div>
+ 
+            <div className={classes.about}>
+                <h2>A little bit about What To Cook</h2>
+                <img src="https://static6.depositphotos.com/1014511/575/i/450/depositphotos_5755752-stock-photo-healthy-eating.jpg" alt="image" />
+            </div>
         </div>
+ 
 
 
     );
 }
 
 export default FoodList;
-
-
-<div className={classes.mainDiv}>
-    <div className={classes.carouselDiv}>
-        Easy and convenient meals based on food you already have
-        <div className={classes.imageDiv}>
-            carousel Image goes here
-        </div>
-    </div>
-    <div className={classes.recipeDiv}>
-        <div>Dinner Ideas</div>
-        <div className={classes.dinnerDiv} >
-            Dinner Images go here
-        </div>
-        <div>Light Bites</div>
-        <div className={classes.lightBites}>
-            Light Images
-        </div>
-    </div>
-</div>

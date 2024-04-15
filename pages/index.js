@@ -10,7 +10,7 @@ export default function Home() {
   
   if (globalCtx.theGlobalObject.dataLoaded == true) {
     return (
-          <FoodList foods={globalCtx.theGlobalObject.foods} />
+          <FoodList/>
     )
   }
 

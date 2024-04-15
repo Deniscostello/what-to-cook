@@ -9,9 +9,9 @@ export function GlobalContextProvider(props) {
         getAllFoods()
     }, []);
 
-    useEffect(() => {
-        getAllUsers()
-    }, []);
+    // useEffect(() => {
+    //     getAllUsers()
+    // }, []);
 
     useEffect(() => {
         getAllRecipes()
@@ -20,12 +20,12 @@ export function GlobalContextProvider(props) {
     async function getAllFoods() {
         const response = await fetch('/api/get-foods', {
             method: 'POST',
-            body: JSON.stringify({ foods: 'all' }),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        let data = await response.json();
+        let data = await response.json()
+        console.log("Show foods props"+ JSON.stringify(data))
         setGlobals((previousGlobals) => { 
             const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); 
             newGlobals.foods = data.foods; 
@@ -119,7 +119,7 @@ export function GlobalContextProvider(props) {
             const data = await response.json(); 
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
-                newGlobals.foods.push(command.newVal); return newGlobals
+                newGlobals.foods.push(command.newVal.foodName); return newGlobals
             })
         }
     }
