@@ -9,13 +9,13 @@ export function GlobalContextProvider(props) {
         getAllFoods()
     }, []);
 
-    useEffect(() => {
-        getAllUsers()
-    }, []);
+    // useEffect(() => {
+    //     getAllUsers()
+    // }, []);
 
-    useEffect(() => {
-        getAllRecipes()
-    }, []);
+    // useEffect(() => {
+    //     getAllRecipes()
+    // }, []);
 
     async function getAllFoods() {
         const response = await fetch('/api/get-foods', {
