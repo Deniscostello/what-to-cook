@@ -8,8 +8,14 @@ import FoodList from '@/components/FoodList'
 export default function Home() {
   const globalCtx = useContext(GlobalContext)
   
+  if (globalCtx.theGlobalObject.dataLoaded == true) {
     return (
           <FoodList/>
     )
+  }
+
+  return (
+    <div>Loading data from database</div>
+  )
 }
 

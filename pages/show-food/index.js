@@ -8,7 +8,7 @@ function ShowFoodPage() {
     const globalCtx = useContext(GlobalContext)
     if (globalCtx.theGlobalObject.dataLoaded == true) {
         return (
-            <ShowFood foods={globalCtx.theGlobalObject.foods} />
+            <ShowFood foods={globalCtx.theGlobalObject.foods} favRecipe = {globalCtx.theGlobalObject.favourites} />
         )
     }
 
