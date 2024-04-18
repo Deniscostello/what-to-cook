@@ -55,6 +55,6 @@ export async function middleware(req, res ) {
 }
 
 export const config = {
-    matcher: ['/show-food', '/signin', '/signout', '/input-food', '/show-recipe' ]
+    matcher: ['/show-food', '/signin', '/signout', '/input-food', '/show-recipe', '/' ]
     // matcher: ['/api']
 }
