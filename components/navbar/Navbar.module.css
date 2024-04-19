@@ -45,13 +45,11 @@
 .Title {
   display: flex;
   justify-content: center;
-  background-color: aqua;
   width: 90%;
 }
 
 .signout {
   display: flex;
-  background-color: brown;
   width: 10%;
   justify-content: flex-end;
 

@@ -21,8 +21,8 @@ export default function SignInComponent(props) {
         event.preventDefault();
 
         const userData = {
-            username: state.username,
-            password: state.password,
+            username: state.username.trim(),
+            password: state.password.trim(),
         };
 
 

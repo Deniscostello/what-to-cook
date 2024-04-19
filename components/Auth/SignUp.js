@@ -42,9 +42,9 @@ export default function SignUpComponent(props) {
         }
 
         const userData = {
-            username: state.username,
-            email: state.email,
-            password: state.password,
+            username: state.username.trim(),
+            email: state.email.trim(),
+            password: state.password.trim(),
         };
 
 
