@@ -5,7 +5,6 @@ import Head from 'next/head';
 import RecipeItem from '../show-recipe/RecipeItem';
 
 function ShowFood(props) {
-  console.log(props.favRecipe)
   return (
     <>
       <Head>

@@ -8,7 +8,6 @@ const SignIn = () => {
   const router = useRouter()
 
   async function signInHandler(enteredData) {
-    console.log("Enterdata " + JSON.stringify(enteredData))
 
     const response = await fetch('/api/sign-in', {
       method: 'POST',
@@ -18,7 +17,6 @@ const SignIn = () => {
       }
     });
     const data = await response.json();
-    console.log(data)
     if (response.ok) {
       router.push('/');
     }

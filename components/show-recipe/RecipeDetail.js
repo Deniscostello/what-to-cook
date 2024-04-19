@@ -2,7 +2,6 @@
 import classes from './RecipeDetail.module.css'
 
 function RecipeDetail(props) {
-  console.log(props)
   return (
     <section>
       <div >

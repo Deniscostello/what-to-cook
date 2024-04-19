@@ -14,7 +14,6 @@ async function handler(req, res) {
             const userData = await getUserResponse.json();
             if (getUserResponse.ok) {
                 req.body.userId = userData.id
-                console.log('add food' + JSON.stringify(req.body))
                 const response = await fetch('http://localhost:8082/food/addNewRecipeId', {
                     method: 'POST',
                     body: JSON.stringify(req.body),

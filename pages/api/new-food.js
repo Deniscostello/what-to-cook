@@ -17,7 +17,6 @@ async function handler(req, res) { // can be called anything you like
       const userData = await getUserResponse.json();
       if (getUserResponse.ok) {
         req.body.userId = userData.id
-        console.log('add food' + JSON.stringify(req.body))
         const addFoodResponse = await fetch('http://localhost:8082/food/addNewFood', {
           method: 'POST',
           body: JSON.stringify(req.body),
@@ -26,7 +25,6 @@ async function handler(req, res) { // can be called anything you like
           }
         });
         const data = await addFoodResponse.json();
-        console.log(data)
         res.json(data)
       }
       else {

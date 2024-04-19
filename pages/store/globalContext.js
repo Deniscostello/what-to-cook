@@ -119,7 +119,6 @@ export function GlobalContextProvider(props) {
             }
         }
         if (command.cmd == 'addFood') {
-            console.log("newVal: " + JSON.stringify(command.newVal))
             const response = await fetch('/api/new-food', {
                 method: 'POST',
                 body: JSON.stringify(command.newVal),
@@ -128,14 +127,12 @@ export function GlobalContextProvider(props) {
                 }
             });
             const data = await response.json();
-            console.log(command.newVal.foodName)
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
                 newGlobals.foods.push(command.newVal.foodName); return newGlobals
             })
         }
         if (command.cmd == 'addFavRecipe') {
-            console.log("newVal: " + JSON.stringify(command.newVal))
             const response = await fetch('/api/new-FavRecipe', {
                 method: 'POST',
                 body: JSON.stringify(command.newVal),
@@ -144,8 +141,6 @@ export function GlobalContextProvider(props) {
                 }
             });
             const data = await response.json();
-            console.log('fav data ' + JSON.stringify(data))
-            console.log(data)
         }
     }
 
