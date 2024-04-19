@@ -29,15 +29,15 @@ export default function SignUpComponent(props) {
             return;
         }
         if (state.username.length < 1 || state.email.length < 1 || state.password.length < 1) {
-            alert('Please enter username.');
+            alert('Please fill all fields.');
             return;
         }
-        if (state.email.length < 1) {
-            alert('Please enter email.');
+        if (state.email.length > 50) {
+            alert('Please enter email less than 50 characters long.');
             return;
         }
-        if (state.password.length < 1) {
-            alert('Please enter password.');
+        if (state.username.length < 3 || state.username.length > 20) {
+            alert('Please enter username between 3 and 20 characters long.');
             return;
         }
 
@@ -55,7 +55,7 @@ export default function SignUpComponent(props) {
         <Card>
             <form className={classes.form} onSubmit={submitHandler}>
                 <div className={classes.title}>
-                    ABC
+                    <h1>Sign up</h1>
                 </div>
                 <div className={classes.control}>
                     <label htmlFor='username'>Username </label>
@@ -63,7 +63,7 @@ export default function SignUpComponent(props) {
                 </div>
                 <div className={classes.control}>
                     <label htmlFor='email'>Email </label>
-                    <input className={classes.input} type="text" name="email" placeholder="email" value={state.email} onChange={handleChange} autoComplete="off" />
+                    <input className={classes.input} type="text" name="email" placeholder="email@domain.com" value={state.email} onChange={handleChange} autoComplete="off" />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor='password'>Password </label>

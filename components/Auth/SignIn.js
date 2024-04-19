@@ -43,7 +43,7 @@ export default function SignInComponent(props) {
         <Card>
             <form className={classes.form} onSubmit={submitHandler}>
                 <div className={classes.title}>
-                    ABC
+                <h1>Sign in</h1>
                 </div>
                 <div className={classes.control}>
                     <label htmlFor='username'>Username </label>
