@@ -2,10 +2,10 @@
   background-color: #547258;
   height: 1.75em;
   display: flex;
-  justify-content: space-around;
   font-size: 40px;
+  color: #ffffff;
+  justify-content: center;
   align-items: center;
-  color: white;
 }
 
 @media (max-width: 940px) {
@@ -39,9 +39,39 @@
 .hamMenu {
   display: none;
 }
+.Title {
+  display: flex;
+  justify-content: center;
+  background-color: aqua;
+  width: 90%;
+}
+
+.signout {
+  display: flex;
+  background-color: brown;
+  width: 10%;
+  justify-content: flex-end;
+
+}
+.signout button {
+  font: inherit;
+  font-size: 30px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid black;
+  background-color: transparent;
+  padding: .75rem 1.5rem;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.signout button:hover,
+.signout button:active {
+  background-color: #5D8B63;
+}
+
 .links {
   background-color: #5D8B63;
-  height: 1.25em;
   display: flex;
   justify-content: space-around;
   font-size: 30px;
@@ -49,6 +79,3 @@
   color: white;
 }
 }
-
-
-

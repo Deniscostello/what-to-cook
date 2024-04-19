@@ -1,15 +1,16 @@
 import { createContext, useState, useEffect } from 'react'
-
+import { useRouter } from "next/router"
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
     const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [], recipes: [], signInError: [], signUpError: [], favourites: [], dataLoaded: false })
+    const router = useRouter()
 
-    useEffect(() => {
-        getAllFoods()
-        getAllRecipes()
-        getFavRecipes()
-    }, []);
+    // useEffect(() => {
+    //     getAllFoods()
+    //     getAllRecipes()
+    //     getFavRecipes()
+    // }, []);
 
     async function getAllFoods() {
         const response = await fetch('/api/get-foods', {
@@ -103,6 +104,19 @@ export function GlobalContextProvider(props) {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
                 newGlobals.signUpError = command.newVal; return newGlobals
             })
+        }
+        if (command.cmd == 'signout') {
+            const response = await fetch('/api/signout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            await response.json();
+            if(response.ok) {
+                
+                router.push('/signin');
+            }
         }
         if (command.cmd == 'addFood') {
             console.log("newVal: " + JSON.stringify(command.newVal))
