@@ -20,6 +20,9 @@
 .links {
   display: none;
 }
+.signout {
+  display: none;
+}
 
 .Title {
   display: flex;

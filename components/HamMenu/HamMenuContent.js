@@ -26,6 +26,9 @@ export default function HamMenuContent(props) {
             setPopupToggle(true)
         }
     }
+    function handleSignout() {
+        globalCtx.updateGlobals({ cmd: 'signout' })
+      }
 
     let contentJsx = <div className={classes.menuItem} onClick={() => clicked(item.webAddress)} ><p>Hello</p> </div>
 
@@ -49,6 +52,9 @@ export default function HamMenuContent(props) {
                     <div className={classes.RecipeDiv}>
                         <Link href='/show-recipe'> Show Recipes</Link>
                     </div>
+                    <div className={classes.signout}>
+            <button onClick={handleSignout}>Signout</button>
+          </div>
 
                 </div>
 
