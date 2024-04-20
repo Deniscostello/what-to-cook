@@ -22,11 +22,8 @@ function RecipeItem(props) {
   }; 
 
   return (
-    <li className={classes.item}>
+    <li className={`${classes.webpageItem} ${classes.phoneItem}`}>
       <Card>
-      {/* <div>
-      <img src={props.image}  alt={props.title} />
-      </div> */}
       <div className={classes.image}>
           <img src={props.image} alt={props.title} />
         </div>
