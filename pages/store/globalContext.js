@@ -6,11 +6,11 @@ export function GlobalContextProvider(props) {
     const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [], recipes: [], signInError: [], signUpError: [], favourites: [], dataLoaded: false })
     const router = useRouter()
 
-    // useEffect(() => {
-    //     getAllFoods()
-    //     getAllRecipes()
-    //     getFavRecipes()
-    // }, []);
+    useEffect(() => {
+        getAllFoods()
+        getAllRecipes()
+        getFavRecipes()
+    }, []);
 
     async function getAllFoods() {
         const response = await fetch('/api/get-foods', {
@@ -21,12 +21,18 @@ export function GlobalContextProvider(props) {
         });
         let data = await response.json()
         if (response.ok) {
+            console.log('Null')
+
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
-                newGlobals.foods = data.foods;
+                if (data.foods != null) {
+                    console.log('dataFoods' + data.foods)
+                    newGlobals.foods = data.foods;
+                }
                 newGlobals.dataLoaded = true;
                 return newGlobals
             })
+
         }
 
     }
@@ -34,18 +40,23 @@ export function GlobalContextProvider(props) {
     async function getAllRecipes() {
         const response = await fetch('/api/get-recipe', {
             method: 'POST',
-            body: JSON.stringify({ recipes: 'all' }),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        let data = await response.json();
-        setGlobals((previousGlobals) => {
-            const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
-            newGlobals.recipes = data.recipes;
-            newGlobals.dataLoaded = true;
-            return newGlobals
-        })
+        let data = await response.json()
+        if (response.ok) {
+            if(data.recipes){
+                console.log('new recipes')
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.recipes = []
+                newGlobals.recipes = data.recipes;
+                newGlobals.dataLoaded = true;
+                return newGlobals
+            })
+        }
+        }
 
     }
 
@@ -57,23 +68,22 @@ export function GlobalContextProvider(props) {
             }
         });
         let data = await response.json();
-        if(response.ok){
-        setGlobals((previousGlobals) => {
-            const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
-            newGlobals.favourites = data.FavRecipes;
-            newGlobals.dataLoaded = true;
-            return newGlobals
-        })
-    }
+        if (response.ok) {
+            setGlobals((previousGlobals) => {
+                const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
+                newGlobals.favourites = data.FavRecipes;
+                newGlobals.dataLoaded = true;
+                return newGlobals
+            })
+        }
 
     }
 
 
-    async function editGlobalData(command) { // {cmd: someCommand, newVal: 'new text'}
-        if (command.cmd == 'hideHamMenu') { // {cmd: 'hideHamMenu', newVal: false} 
-            //  WRONG (globals object reference doesn't change) and react only looks at its 'value' aka the reference, so nothing re-renders:
-            //    setGlobals((previousGlobals) => { let newGlobals = previousGlobals; newGlobals.hideHamMenu = command.newVal; return newGlobals })
-            // Correct, we create a whole new object and this forces a re-render:
+    async function editGlobalData(command) {
+
+
+        if (command.cmd == 'hideHamMenu') {
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
                 newGlobals.hideHamMenu = command.newVal; return newGlobals
@@ -113,8 +123,8 @@ export function GlobalContextProvider(props) {
                 }
             });
             await response.json();
-            if(response.ok) {
-                
+            if (response.ok) {
+
                 router.push('/signin');
             }
         }
@@ -127,10 +137,12 @@ export function GlobalContextProvider(props) {
                 }
             });
             const data = await response.json();
+            await getAllRecipes()
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals))
                 newGlobals.foods.push(command.newVal.foodName); return newGlobals
             })
+
         }
         if (command.cmd == 'addFavRecipe') {
             const response = await fetch('/api/new-FavRecipe', {
@@ -140,7 +152,8 @@ export function GlobalContextProvider(props) {
                     'Content-Type': 'application/json'
                 }
             });
-            const data = await response.json();
+            //const data = await response.json();
+            
         }
     }
 

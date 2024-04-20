@@ -1,40 +1,36 @@
 
 
 async function handler(req, res) {
+  try {
     const { cookies } = req;
     const jwt = cookies.whattocook
-  
-    if (jwt) {
-      try {
-        const getUserResponse = await fetch('http://localhost:8080/api/auth/getUser', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Cookie': `whattocook=${jwt}`
-          }
-        });
-        const userData = await getUserResponse.json();
-        if (getUserResponse.ok) {
-          req.body.userId = userData.id
-            const getRecipes = await fetch('http://localhost:8081/food/getFavRecipe', {
-                method: 'POST',
-                body: JSON.stringify(req.body),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        const data = await getRecipes.json()
-        
-        res.json(data)
-        }
-        else {
-          console.log("Not valid")
-        }
-      } catch (error) {
-        console.error('Error validating JWT token:', error);
-      }
+    if (!jwt) {
+      throw "No valid jwt"
     }
+    const getUserResponse = await fetch('http://localhost:8080/api/auth/getUser', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cookie': `whattocook=${jwt}`
+      }
+    });
+    const userData = await getUserResponse.json()
+    if (!getUserResponse.ok) {
+      throw getUserResponse.error
+    }
+    req.body.userId = userData.id
+    const getRecipes = await fetch('http://localhost:8081/food/getFavRecipe', {
+      method: 'POST',
+      body: JSON.stringify(req.body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await getRecipes.json()
+    res.json(data)
+
+  } catch (error) {
+    res.status(401).json({ message: error })
   }
-  
-  export default handler;
-  
+}
+export default handler;

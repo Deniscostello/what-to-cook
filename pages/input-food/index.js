@@ -9,7 +9,6 @@ function AddFoodPage() {
 
     async function addFoodHandler(enteredFoodData)  {
         await globalCtx.updateGlobals({cmd: 'addFood', newVal: enteredFoodData})
-
         router.push('/');
     }
     return <AddFood onAddFood ={addFoodHandler} />

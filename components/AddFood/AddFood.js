@@ -18,6 +18,7 @@ function AddFood(props) {
   const [foodName, setFoodName] = useState()
   const [showCamera, setShowCamera] = useState(false)
   const [showFile, setShowFile] = useState(false)
+  const [cameraErr, setCameraErr] = useState()
 
   const beginCapture = useCallback(
     async () => {
@@ -25,13 +26,19 @@ function AddFood(props) {
         return;
       }
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+          video: {
+            facingMode: {
+              ideal: 'enviroment'
+            }
+          } });
         setStreamValue(stream)
         cameraPreviewEl.current.srcObject = stream;
         cameraPreviewEl.current.play();
         setCapturing(true);
       } catch (error) {
         console.log('Error accessing camera: ', error);
+        setCameraErr('Cannot access the camera')
       }
     },
     [cameraPreviewEl],
@@ -102,6 +109,11 @@ function AddFood(props) {
       setShowFile(false)
     }
     setShowCamera(prevState => !prevState)
+    
+    if (capturing == true) {
+      setShowCamera(false)
+    }
+    beginCapture()
 
   }
   function openFile() {
@@ -123,44 +135,61 @@ function AddFood(props) {
       </Head>
 
       <div className={classes.mainDiv}>
+        <div className={classes.title}>
+          <h1>Add a food image by selecting one of the option below!</h1>
+        </div>
         <div className={classes.description}>
-          <h1 onClick={openCamera} style={{ cursor: 'pointer' }} > Take picture with camera</h1>
-          <h1 onClick={openFile} style={{ cursor: 'pointer' }} > Upload a File</h1>
+          {/* <h1 onClick={openCamera} style={{ cursor: 'pointer' }} > Take picture with camera</h1>
+          <h1 onClick={openFile} style={{ cursor: 'pointer' }} > Upload a File</h1> */}
+          {/* <button onClick={beginCapture}> <h2>Take picture with camera </h2></button> */}
+          <button onClick={openCamera}> <h2>Take picture with camera </h2></button>
+          <button onClick={openFile} > <h2>Upload a File </h2></button>
         </div>
         <div className={classes.image}>
-          {showCamera && (
-            <div className={classes.inputImage}>
-              <div className={classes.options}>
-                <button onClick={beginCapture}>Start Camera</button>
-                <button onClick={endCapture}>Stop Camera</button>
-              </div>
-              <div className={classes.videoDiv}>
-                <video className={classes.video} ref={cameraPreviewEl} />
-              </div>
-              <div className={classes.takePicture}>
-                {capturing &&
-                  (
+        {showCamera && (
+          <div className={classes.inputImage}>
+            <div className={classes.options}>
+                <button onClick={beginCapture}>Click here open the camera</button>
+              </div> 
+            <div className={classes.videoDiv}>
+              <video className={classes.video} ref={cameraPreviewEl} />
+            </div>
+            <div className={classes.takePicture}>
+              {capturing &&
+                (
+                  <div>
                     <button onClick={takeSnapshot}>
                       Click To Take Picture
                     </button>
-                  )
-                }
-              </div>
+                    <button onClick={endCapture}>Stop Camera</button>
+                  </div>
+                )
+              }
+              {cameraErr && (
+                <div>
+                {cameraErr}
+                </div>
+              )}
             </div>
+          </div>
 
-          )}
+          )} 
 
           {showFile && (
             <div className={classes.inputImage}>
               <h1 > Click to upload an image</h1>
               <input
+              className={classes.fileButton}
                 type="file"
                 name="myImage"
                 onChange={(event) => {
                   setSelectedImage(event.target.files[0]);
                 }}
               />
-              <button onClick={uploadHandler}> Submit</button>
+              {selectedImage && (
+                 <button onClick={uploadHandler}> Submit</button>
+              )}
+             
             </div>
           )}
 
