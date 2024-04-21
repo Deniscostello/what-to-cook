@@ -35,21 +35,30 @@ function Navbar() {
           <HamMenuContent />
           <HamMenu toggleMenuHide={() => toggleMenuHide()} />
         </div>
+        <div className={classes.webHeader}>
+          <div className={classes.webHead}>
 
-          <div className={classes.Title}>
-            <Link href='/'> What To Cook </Link>
+            <div className={classes.Title}>
+              <Link href='/'> What To Cook </Link>
+            </div>
+            <div className={classes.signout}>
+              <button onClick={handleSignout}>Signout</button>
+            </div>
           </div>
-
-          <div className={classes.signout}>
-            <button onClick={handleSignout}>Signout</button>
-          </div>
-
+        </div>
 
       </header>
       <div className={classes.links}>
-        <Link href='/input-food'>Add Food</Link>
-        <Link href='/show-food'>Show Food</Link>
-        <Link href='/show-recipe'>Show Recipes</Link>
+        <div className={classes.addFood}>
+          <Link href='/input-food'>Add Food</Link>
+        </div>
+        <div className={classes.showFood}>
+
+          <Link href='/show-food'>Show Food</Link>
+        </div>
+        <div className={classes.showRecipe}>
+          <Link href='/show-recipe'>Show Recipes</Link>
+        </div>
       </div>
     </div>
 

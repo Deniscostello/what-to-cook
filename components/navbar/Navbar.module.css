@@ -8,6 +8,7 @@
   align-items: center;
 }
 
+/*Phone CSS*/
 @media (max-width: 940px) {
 .ResponsiveHeader {
   flex-direction: row;
@@ -34,23 +35,29 @@
 }
 
 @media (min-width: 769px) {
-.NavLinks {
-  display: flex;
-  justify-content: space-evenly;
-  width: 65%;
-}
 .hamMenu {
   display: none;
+}
+.webHeader {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.webHead {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+ 
 }
 .Title {
   display: flex;
   justify-content: center;
-  width: 90%;
+  align-items: center;
+
 }
 
 .signout {
   display: flex;
-  width: 10%;
   justify-content: flex-end;
 
 }
@@ -74,9 +81,22 @@
 .links {
   background-color: #5D8B63;
   display: flex;
-  justify-content: space-around;
   font-size: 30px;
   align-items: center;
   color: white;
+}
+.addFood {
+  width: 30%;
+  text-align: center;
+}
+
+.showFood {
+  width: 33%;
+  text-align: center;
+}
+
+.showRecipe {
+  width: 33%;
+  text-align: center;
 }
 }

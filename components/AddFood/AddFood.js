@@ -7,8 +7,6 @@ import FoodResult from './FoodResult';
 import GlobalContext from '@/pages/store/globalContext';
 
 function AddFood(props) {
-  const foodIdInputRef = useRef();
-  const FoodURLInputRef = useRef();
   const cameraPreviewEl = useRef(null);
   const [capturing, setCapturing] = useState(false);
   const [response, setResponse] = useState()
@@ -134,7 +132,8 @@ function AddFood(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className={classes.mainDiv}>
+      <div className={`${classes.webpageAddFood} ${classes.phoneAddFood}`}>
+      {/* <div className={classes.mainDiv}> */}
         <div className={classes.title}>
           <h1>Add a food image by selecting one of the option below!</h1>
         </div>
