@@ -1,0 +1,71 @@
+@media (min-width: 850px) {
+    .webpageDisplay {
+        display: flex;
+        justify-content: space-evenly;
+        background-color: red;
+    }
+
+    .showFood {
+        width: 40%;
+    }
+    .showRecipe {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .fav {
+        width: 100%;
+    }
+
+}
+
+
+/* Phone CSS */
+@media (max-width: 849px) {
+    .phoneDisplay {
+        display: flex;
+        justify-content: space-between;
+    
+    }
+    
+    .showFood {
+        width: 40%;
+    }
+    
+    .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    
+    
+    
+    .showRecipe {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    
+    
+    
+    
+}    

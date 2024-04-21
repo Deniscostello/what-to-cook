@@ -59,4 +59,27 @@
 }
 
 
+.signout {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+}
+.signout button {
+  font: inherit;
+  font-size: 30px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: transparent;
+  padding: .75rem 1.5rem;
+  border-radius: 4px;
+  margin-top: 0.5em;
+}
+
+.signout button:hover,
+.signout button:active {
+  background-color: #5D8B63;
+}
+
 

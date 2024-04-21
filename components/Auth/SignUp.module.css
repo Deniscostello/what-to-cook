@@ -1,7 +1,3 @@
-.container {
-    height: 400px;
-  }
-  
   .title {
     text-align: center;
     margin: 20px 0;
@@ -10,7 +6,9 @@
   .form {
     display: flex;
     flex-direction: column;
+    width: 70%;
     justify-content: space-between;
+    padding: 1rem;
   }
   
   .input {
@@ -19,21 +17,6 @@
     margin: 10px 0;
     padding: 10px;
   }
-  
-  .btn {
-    padding: 20px;
-    margin: 20px 0;
-    width: 100px;
-    align-self: center;
-  }
-
-
-
-
-  .form {
-    padding: 1rem;
-  }
-  
   .control {
     margin-bottom: 0.5rem;
   }
@@ -56,9 +39,29 @@
   
   .actions {
     margin-top: 1rem;
-    text-align: right;
+    text-align: center;
   }
   
+  .signup {
+    padding-bottom: 1em;
+    border-bottom: 1px solid black;
+  }
+
+  .signin {
+    padding-top: 1em;
+    display: flex;
+    justify-content: center;
+  }
+
+  .link {
+    margin-left: .3em;
+    text-decoration: underline;
+  }
+
+  .link :hover {
+    background-color: #5D8B63;
+  }
+
   .actions button {
     font: inherit;
     cursor: pointer;
@@ -72,6 +75,7 @@
   
   .actions button:hover,
   .actions button:active {
-    background-color: #a50e48;
-    border-color: #a50e48;
+    background-color: #5D8B63;
+    border-color: black;
   }
+

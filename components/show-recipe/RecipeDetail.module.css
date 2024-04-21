@@ -1,4 +1,121 @@
-.detailDiv {
+
+@media (min-width: 690px) {
+    .webpageRecipe {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .webpageRecipe h1 {
+        font-size: 50px;
+    }
+
+    .detailDiv {
+        display: flex;
+    }
+    .imgDesc {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        padding-right: 1em;
+        padding-left: 0.5em;
+        text-align: left;
+    }
+
+
+    .instructions h2 {
+        display: flex;
+        justify-content: flex-start;
+
+    }
+
+    .instructions p {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1em;
+        text-align: left;
+    }
+
+    .instructions ul {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.5em;
+        padding-right: 0.5em;
+        text-align: left;
+    }
+
+}
+
+
+
+
+
+@media (max-width: 940px) {
+    .phoneRecipe {
+        display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .phoneRecipe h1 {
+        font-size: 30px;
+    }
+    .detailDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .imgDesc {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        padding-bottom: 1em;
+        border-bottom: 1px solid black;
+    }
+    .imgDesc img {
+        width: 70%;
+    }
+
+    .instructions {
+        padding-top: 1em;
+        
+    }
+    .instructions h2 {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 1em;
+
+    }
+
+    .instructions p {
+        display: flex;
+        flex-direction: column;
+        padding-left: 3em;
+        text-align: left;
+    }
+
+    .instructions ul {
+        display: flex;
+        flex-direction: column;
+        padding-left: 3em;
+        padding-right: 0.2em;
+        text-align: left;
+    }
+    .data {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 1em;
+    }
+    }
+    
+
+
+
+
+
+/* .detailDiv {
     display: flex;
     margin-top: 30px;
 
@@ -6,4 +123,21 @@
 
 .imgDesc {
     margin-right: 3%;
+    width: 35%;
+}*/
+.imgDesc a{
+    text-decoration: underline;
+    font-size: 20px;
 }
+.imgDesc a:link{
+    color: green;
+}
+
+.imgDesc a:visited{
+    color: blue;
+}
+
+.imgDesc a:hover{
+    color: red;
+} 
+

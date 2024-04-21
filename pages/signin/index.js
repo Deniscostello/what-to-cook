@@ -17,8 +17,8 @@ const SignIn = () => {
       }
     });
     const data = await response.json();
-    console.log(data)
     if (response.ok) {
+      router.reload()
       router.push('/');
     }
     else {

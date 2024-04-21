@@ -2,13 +2,6 @@ import { NextRequest, NextResponse } from "next/server"
 
 
 export async function middleware(req, res ) {
-    // const response = NextResponse.next({
-    //     request: {
-    //         headers: new Headers(req.headers),
-    //     },
-    // })
-
-
 
   const jwt = req.cookies.get('whattocook')?.value
   let verifiedJwt = null
@@ -55,6 +48,6 @@ export async function middleware(req, res ) {
 }
 
 export const config = {
-    matcher: ['/show-food', '/signin', '/signout', '/input-food', '/show-recipe' ]
+    matcher: ['/show-food', '/signin', '/signout', '/input-food', '/show-recipe', '/' , '/globalContext']
     // matcher: ['/api']
 }

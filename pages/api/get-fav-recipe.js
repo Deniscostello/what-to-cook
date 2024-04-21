@@ -14,13 +14,12 @@ async function handler(req, res) {
         'Cookie': `whattocook=${jwt}`
       }
     });
-
-    const userData = await getUserResponse.json();
+    const userData = await getUserResponse.json()
     if (!getUserResponse.ok) {
       throw getUserResponse.error
     }
     req.body.userId = userData.id
-    const getRecipes = await fetch('http://localhost:8081/food/getFoodForRecipe', {
+    const getRecipes = await fetch('http://localhost:8081/food/getFavRecipe', {
       method: 'POST',
       body: JSON.stringify(req.body),
       headers: {
@@ -29,10 +28,9 @@ async function handler(req, res) {
     });
     const data = await getRecipes.json()
     res.json(data)
+
   } catch (error) {
     res.status(401).json({ message: error })
   }
 }
-
-
 export default handler;

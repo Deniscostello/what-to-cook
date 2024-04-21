@@ -28,7 +28,8 @@ function FoodResult(props) {
     }
 
     return (
-        <div className={classes.result}>
+        <div className={`${classes.webpageAddFoodResult} ${classes.phoneAddFoodResult}`}>
+         {/* <div className={classes.result}> */}
             <div className={classes.image}>
             <Image fill={true} src={props.snapshot} className={classes.image} alt="Preview" id="frame"  /> </div>
             <form onSubmit={submitHandler}> {output} {textbox} </form>

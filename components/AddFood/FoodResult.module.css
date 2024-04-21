@@ -1,4 +1,5 @@
-.result {
+@media (min-width: 850px) {
+.webpageAddFoodResult {
   border-top: 1px solid black;
   padding-top: 3px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -42,4 +43,163 @@
 .output button:active {
   background-color: #ffe2ed;
 }
+}
 
+
+
+
+/* Phone CSS */
+ @media (max-width: 849px) {
+
+  .phoneAddFoodResult {
+  border-top: 1px solid black;
+  padding-top: 3px;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  font: inherit;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  background-color: green;
+  position: relative;
+  width:30%;
+  height:100%;
+}
+
+.response {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  top: 30%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font: inherit;
+}
+
+.output button {
+  font: inherit;
+  cursor: pointer;
+  color:  #1a2920;
+  border: 1px solid #77002e;
+  background-color: transparent;
+  padding: 0.5% 1.5%;
+  border-radius: 4%;
+}
+
+.output button:hover,
+.output button:active {
+  background-color: #ffe2ed;
+}
+  .phoneAddFood {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1vh;
+    font-size: 0.75rem;
+    text-align: center;
+    width: 90%;
+  }
+  .description {
+    display: flex;
+    font: inherit;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+  }
+  .image {
+    display: flex;
+    justify-content: center;
+    height: 55%;
+  }
+  .options {
+    display: flex;
+    justify-content: center;
+  }
+
+  .inputImage {
+    width: 70%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inputImage button {
+    margin-top: 1vh;
+    font: inherit;
+    cursor: pointer;
+    color: #1a2920;
+    border: 1px solid #77002e;
+    background-color: transparent;
+    padding: 0.5rem .75rem;
+    border-radius: 4px;
+  }
+  
+  .inputImage button:hover,
+  .inputImage button:active {
+    background-color: #ffe2ed;
+  }
+  .result {
+    background-color: green;
+    display: flex;
+    width: 90%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+  .result img {
+    width: 50%;
+  }
+  .videoDiv {
+    display: flex;
+    width: 80%;
+    height: 70%;
+    justify-content: center;
+  }
+  
+  .videoDiv video {
+    height: auto;
+    width: auto;
+  }
+  
+  .takePicture {
+    display: flex;
+    margin-top: 1%;
+    width: 100%;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .description button {
+    margin-top: 1em;
+    font: inherit;
+    cursor: pointer;
+    color: #1a2920;
+    width: 40%;
+    height: 5em;
+    border: 1px solid #77002e;
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+  }
+  
+  .description button:hover,
+  .description button:active {
+    background-color: #ffe2ed;
+  } 
+
+}

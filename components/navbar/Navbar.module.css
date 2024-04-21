@@ -2,12 +2,13 @@
   background-color: #547258;
   height: 1.75em;
   display: flex;
-  justify-content: space-around;
   font-size: 40px;
+  color: #ffffff;
+  justify-content: center;
   align-items: center;
-  color: white;
 }
 
+/*Phone CSS*/
 @media (max-width: 940px) {
 .ResponsiveHeader {
   flex-direction: row;
@@ -18,6 +19,9 @@
   display: flex;
 }
 .links {
+  display: none;
+}
+.signout {
   display: none;
 }
 
@@ -31,24 +35,68 @@
 }
 
 @media (min-width: 769px) {
-.NavLinks {
-  display: flex;
-  justify-content: space-evenly;
-  width: 65%;
-}
 .hamMenu {
   display: none;
 }
+.webHeader {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.webHead {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+ 
+}
+.Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.signout {
+  display: flex;
+  justify-content: flex-end;
+
+}
+.signout button {
+  font: inherit;
+  font-size: 30px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid black;
+  background-color: transparent;
+  padding: .75rem 1.5rem;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.signout button:hover,
+.signout button:active {
+  background-color: #5D8B63;
+}
+
 .links {
   background-color: #5D8B63;
-  height: 1.25em;
   display: flex;
-  justify-content: space-around;
   font-size: 30px;
   align-items: center;
   color: white;
 }
+.addFood {
+  width: 30%;
+  text-align: center;
 }
 
+.showFood {
+  width: 33%;
+  text-align: center;
+}
 
-
+.showRecipe {
+  width: 33%;
+  text-align: center;
+}
+}

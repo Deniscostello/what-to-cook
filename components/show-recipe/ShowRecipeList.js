@@ -4,7 +4,6 @@ import classes from './ShowRecipeList.module.css';
 import RecipeItem from './RecipeItem';
 
 function ShowRecipeList(props) {
-  console.log(props)
   return (
     <>
       <Head>

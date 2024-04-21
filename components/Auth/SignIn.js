@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import GlobalContext from "@/pages/store/globalContext"
 import { useContext } from 'react'
 import Card from '../ui/Card'
+import Link from 'next/link';
 
 
 export default function SignInComponent(props) {
@@ -20,8 +21,8 @@ export default function SignInComponent(props) {
         event.preventDefault();
 
         const userData = {
-            username: state.username,
-            password: state.password,
+            username: state.username.trim(),
+            password: state.password.trim(),
         };
 
 
@@ -41,6 +42,9 @@ export default function SignInComponent(props) {
     return (
         <Card>
             <form className={classes.form} onSubmit={submitHandler}>
+                <div className={classes.title}>
+                <h1>Sign in</h1>
+                </div>
                 <div className={classes.control}>
                     <label htmlFor='username'>Username </label>
                     <input className={classes.input} type="text" name="username" placeholder="username" value={state.username} onChange={handleChange} autoComplete="off" />
@@ -53,7 +57,15 @@ export default function SignInComponent(props) {
                     )}
                 </div>
                 <div className={classes.actions}>
-                    <button>Sign In</button>
+                    <div className={classes.signin}>
+                        <button>Sign In</button>
+                    </div>
+                    <div className={classes.signup}>
+                        <p>Don't have an account?</p>
+                        <div className={classes.link}>
+                            <Link href='/signup'>Sign Up For What To Cook</Link>
+                        </div>
+                    </div>
                 </div>
             </form>
         </Card>
