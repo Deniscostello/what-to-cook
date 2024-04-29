@@ -1,7 +1,7 @@
 import { serialize } from "cookie";
 
 async function handler(req, res) {
-  const response = await fetch('http://localhost:8080/api/auth/signin', {
+  const response = await fetch('http://security-service:8080/api/auth/signin', {
     method: 'POST',
     body: JSON.stringify(req.body),
     headers: {

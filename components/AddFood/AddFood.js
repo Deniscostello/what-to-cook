@@ -6,6 +6,13 @@ import { postFoodRecognition } from '@/utils/postFoodRecognition';
 import FoodResult from './FoodResult';
 import GlobalContext from '@/pages/store/globalContext';
 
+/*
+The following code for food recognition is based on a Clarifai tutorial 
+"Add AI to a Node.js Web App"
+https://docs.clarifai.com/tutorials/node-js-tutorial/
+with additional features incorporated and modifications made for my project demands
+*/
+
 function AddFood(props) {
   const cameraPreviewEl = useRef(null);
   const [capturing, setCapturing] = useState(false);
@@ -81,6 +88,7 @@ function AddFood(props) {
     },
     []
   );
+  
 
   async function uploadHandler() {
     setSnapshot(URL.createObjectURL(selectedImage))
@@ -133,14 +141,10 @@ function AddFood(props) {
       </Head>
 
       <div className={`${classes.webpageAddFood} ${classes.phoneAddFood}`}>
-      {/* <div className={classes.mainDiv}> */}
         <div className={classes.title}>
           <h1>Add a food image by selecting one of the option below!</h1>
         </div>
         <div className={classes.description}>
-          {/* <h1 onClick={openCamera} style={{ cursor: 'pointer' }} > Take picture with camera</h1>
-          <h1 onClick={openFile} style={{ cursor: 'pointer' }} > Upload a File</h1> */}
-          {/* <button onClick={beginCapture}> <h2>Take picture with camera </h2></button> */}
           <button onClick={openCamera}> <h2>Take picture with camera </h2></button>
           <button onClick={openFile} > <h2>Upload a File </h2></button>
         </div>
@@ -148,7 +152,7 @@ function AddFood(props) {
         {showCamera && (
           <div className={classes.inputImage}>
             <div className={classes.options}>
-                <button onClick={beginCapture}>Click here open the camera</button>
+                <button onClick={beginCapture}>Click here to open the camera</button>
               </div> 
             <div className={classes.videoDiv}>
               <video className={classes.video} ref={cameraPreviewEl} />

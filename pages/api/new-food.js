@@ -7,7 +7,7 @@ async function handler(req, res) { // can be called anything you like
 
   if (jwt) {
     try {
-      const getUserResponse = await fetch('http://localhost:8080/api/auth/getUser', {
+      const getUserResponse = await fetch('http://security-service:8080/api/auth/getUser', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ async function handler(req, res) { // can be called anything you like
       const userData = await getUserResponse.json();
       if (getUserResponse.ok) {
         req.body.userId = userData.id
-        const addFoodResponse = await fetch('http://localhost:8082/food/addNewFood', {
+        const addFoodResponse = await fetch('http://add-food-service:8082/food/addNewFood', {
           method: 'POST',
           body: JSON.stringify(req.body),
           headers: {

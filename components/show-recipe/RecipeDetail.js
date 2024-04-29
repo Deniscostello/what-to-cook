@@ -3,7 +3,6 @@ import classes from './RecipeDetail.module.css'
 function RecipeDetail(props) {
   return (
     <section >
-    {/* <section> */}
       <div className={`${classes.webpageRecipe} ${classes.phoneRecipe}`}>
         <h1> {props.title} </h1>
         <div className={classes.detailDiv}>

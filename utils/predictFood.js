@@ -1,4 +1,3 @@
-import { FoodRecognitionResponse } from '@/types';
 import { grpc } from 'clarifai-nodejs-grpc';
 import { V2Client } from 'clarifai-nodejs-grpc/proto/clarifai/api/service_grpc_pb';
 import { PostModelOutputsRequest } from 'clarifai-nodejs-grpc/proto/clarifai/api/service_pb';
