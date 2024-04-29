@@ -16,8 +16,8 @@ function FoodList(props) {
                 {/* <div className={classes.mainDiv}> */}
                 <div className={classes.title}>
                     <h1>Welcome to What To Cook. Your one stop shop for recipes you can make with your ingredients and reduce food waste</h1>
+                    <h1>Add your food to get started</h1>
                 </div>
-
                 <div className={classes.options}>
                     <div className={classes.card}>
                         <Card >

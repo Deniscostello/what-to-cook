@@ -5,7 +5,7 @@ async function handler(req, res) {
     if (!jwt) {
       throw "No valid jwt"
     }
-    const getUserResponse = await fetch('http://localhost:8080/api/auth/getUser', {
+    const getUserResponse = await fetch('http://security-service:8080/api/auth/getUser', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ async function handler(req, res) {
       throw getUserResponse.error
     }
     req.body.userId = userData.id
-    const getFood = await fetch('http://localhost:8081/food/getAllFood', {
+    const getFood = await fetch('http://get-food-service:8081/food/getAllFood', {
       method: 'POST',
       body: JSON.stringify(req.body),
       headers: {

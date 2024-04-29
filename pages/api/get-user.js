@@ -5,7 +5,7 @@ async function handler(req, res) {
         if (!jwt) {
           throw "No valid jwt"
         }
-        const getUserResponse = await fetch('http://localhost:8080/api/auth/getUser', {
+        const getUserResponse = await fetch('http://security-service:8080/api/auth/getUser', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -3,7 +3,19 @@ import { useRouter } from "next/router"
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true, hideProfileMenu: true, foods: [], user: [], recipes: [], signInError: [], signUpError: [], favourites: [], dataLoaded: false })
+    const [globals, setGlobals] = useState({ 
+        aString: 'init val', 
+        count: 0, 
+        hideHamMenu: true, 
+        hideProfileMenu: true, 
+        foods: [], user: [], 
+        recipes: [], 
+        signInError: [], 
+        signUpError: [], 
+        favourites: [], 
+        dataLoaded: false 
+    })
+
     const router = useRouter()
 
     useEffect(() => {
@@ -21,12 +33,9 @@ export function GlobalContextProvider(props) {
         });
         let data = await response.json()
         if (response.ok) {
-            console.log('Null')
-
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
                 if (data.foods != null) {
-                    console.log('dataFoods' + data.foods)
                     newGlobals.foods = data.foods;
                 }
                 newGlobals.dataLoaded = true;
@@ -47,7 +56,6 @@ export function GlobalContextProvider(props) {
         let data = await response.json()
         if (response.ok) {
             if(data.recipes){
-                console.log('new recipes')
             setGlobals((previousGlobals) => {
                 const newGlobals = JSON.parse(JSON.stringify(previousGlobals));
                 newGlobals.recipes = []
